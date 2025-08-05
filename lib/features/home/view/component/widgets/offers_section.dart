@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lasco/core/constants/app_colors.dart';
 
-import '../../../../core/component/widgets/app_button.dart'; // Import your button
+import '../../../../../core/component/widgets/app_button.dart'; // Import your button
 
 class SpecialOffersSection extends StatelessWidget {
   final List<OfferModel> offers;

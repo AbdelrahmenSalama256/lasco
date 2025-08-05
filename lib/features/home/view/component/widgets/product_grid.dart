@@ -1,6 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lasco/core/constants/app_colors.dart';
+import 'package:lasco/core/constants/navigation.dart';
+import 'package:lasco/features/product/views/product_details_screen.dart';
 
 import 'product_card.dart';
 
@@ -28,8 +31,8 @@ class ProductGrid extends StatelessWidget {
           title,
           style: TextStyle(
             fontSize: 18.sp,
-            fontWeight: FontWeight.bold,
-            color: Colors.black87,
+            fontWeight: FontWeight.w400,
+            color: AppColors.black,
           ),
         ),
 
@@ -38,7 +41,7 @@ class ProductGrid extends StatelessWidget {
         // Products Grid
         GridView.builder(
           shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
+          physics: BouncingScrollPhysics(),
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: crossAxisCount,
             childAspectRatio: childAspectRatio,
@@ -56,6 +59,9 @@ class ProductGrid extends StatelessWidget {
               imageUrl: product.imageUrl,
               isOnSale: product.isOnSale,
               isFavorite: product.isFavorite,
+              ontap: () {
+                navigateTo(context, ProductDetailsScreen());
+              },
               onFavoritePressed: () => _onFavoritePressed(product),
               onAddToCartPressed: () => _onAddToCartPressed(product),
             );

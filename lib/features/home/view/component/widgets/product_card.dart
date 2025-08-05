@@ -12,6 +12,7 @@ class ProductCard extends StatelessWidget {
   final bool isOnSale;
   final bool isFavorite;
   final VoidCallback? onFavoritePressed;
+  final VoidCallback? ontap;
   final VoidCallback? onAddToCartPressed;
   final Color? saleTagColor;
   final Color? addToCartColor;
@@ -24,6 +25,7 @@ class ProductCard extends StatelessWidget {
     required this.price,
     this.imageUrl,
     this.isOnSale = false,
+    this.ontap,
     this.isFavorite = false,
     this.onFavoritePressed,
     this.onAddToCartPressed,
@@ -33,123 +35,126 @@ class ProductCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 4.h),
-      decoration: BoxDecoration(
-        color: Color(0xffF7F7F7),
-        borderRadius: BorderRadiusDirectional.only(
-          topEnd: Radius.circular(12.61.r),
-          topStart: Radius.circular(12.61.r),
-          bottomStart: Radius.circular(12.61.r),
-          bottomEnd: Radius.circular(36.r),
+    return GestureDetector(
+      onTap: ontap,
+      child: Container(
+        width: double.infinity,
+        padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 4.h),
+        decoration: BoxDecoration(
+          color: Color(0xffF7F7F7),
+          borderRadius: BorderRadiusDirectional.only(
+            topEnd: Radius.circular(12.61.r),
+            topStart: Radius.circular(12.61.r),
+            bottomStart: Radius.circular(12.61.r),
+            bottomEnd: Radius.circular(36.r),
+          ),
         ),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Product Image with Sale Badge and Favorite Icon
-          _buildImageSection(),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Product Image with Sale Badge and Favorite Icon
+            _buildImageSection(),
 
-          // Product Details
-          Container(
-            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-            decoration: BoxDecoration(
-              color: AppColors.white,
-              borderRadius: BorderRadiusDirectional.only(
-                topEnd: Radius.circular(12.61.r),
-                topStart: Radius.circular(12.61.r),
-                bottomStart: Radius.circular(12.61.r),
-                bottomEnd: Radius.circular(36.r),
+            // Product Details
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+              decoration: BoxDecoration(
+                color: AppColors.white,
+                borderRadius: BorderRadiusDirectional.only(
+                  topEnd: Radius.circular(12.61.r),
+                  topStart: Radius.circular(12.61.r),
+                  bottomStart: Radius.circular(12.61.r),
+                  bottomEnd: Radius.circular(36.r),
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Product Name
+                  Text(
+                    productName,
+                    style: TextStyle(
+                      fontSize: 16.sp,
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.black,
+                    ),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+
+                  SizedBox(height: 4.h),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Expanded(
+                        child: Column(
+                          children: [
+                            SizedBox(height: 4.h),
+
+                            // Category
+                            Text(
+                              category,
+                              style: TextStyle(
+                                fontSize: 12.sp,
+                                fontWeight: FontWeight.w400,
+                                color: AppColors.secoundry,
+                              ),
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                            ),
+
+                            // SizedBox(height: 8.h),
+
+                            // Rating and Price Row
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                // Rating
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.star,
+                                      color: Colors.amber,
+                                      size: 16.sp,
+                                    ),
+                                    SizedBox(width: 2.w),
+                                    Text(
+                                      rating.toString(),
+                                      style: TextStyle(
+                                        fontSize: 12.sp,
+                                        fontWeight: FontWeight.w400,
+                                        color: AppColors.black,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+
+                            SizedBox(height: 8.h),
+
+                            // Price
+                            Text(
+                              price,
+                              style: TextStyle(
+                                fontSize: 16.sp,
+                                fontWeight: FontWeight.bold,
+                                color: AppColors.orange,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                      Spacer(),
+                      // Add to Cart Button
+                      _buildAddToCartButton(),
+                    ],
+                  )
+                ],
               ),
             ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Product Name
-                Text(
-                  productName,
-                  style: TextStyle(
-                    fontSize: 16.sp,
-                    fontWeight: FontWeight.w400,
-                    color: AppColors.black,
-                  ),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-
-                SizedBox(height: 4.h),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Expanded(
-                      child: Column(
-                        children: [
-                          SizedBox(height: 4.h),
-
-                          // Category
-                          Text(
-                            category,
-                            style: TextStyle(
-                              fontSize: 12.sp,
-                              fontWeight: FontWeight.w400,
-                              color: AppColors.secoundry,
-                            ),
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          ),
-
-                          // SizedBox(height: 8.h),
-
-                          // Rating and Price Row
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              // Rating
-                              Row(
-                                children: [
-                                  Icon(
-                                    Icons.star,
-                                    color: Colors.amber,
-                                    size: 16.sp,
-                                  ),
-                                  SizedBox(width: 2.w),
-                                  Text(
-                                    rating.toString(),
-                                    style: TextStyle(
-                                      fontSize: 12.sp,
-                                      fontWeight: FontWeight.w400,
-                                      color: AppColors.black,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-
-                          SizedBox(height: 8.h),
-
-                          // Price
-                          Text(
-                            price,
-                            style: TextStyle(
-                              fontSize: 16.sp,
-                              fontWeight: FontWeight.bold,
-                              color: AppColors.orange,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Spacer(),
-                    // Add to Cart Button
-                    _buildAddToCartButton(),
-                  ],
-                )
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

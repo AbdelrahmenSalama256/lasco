@@ -27,7 +27,7 @@ class AppButton extends StatelessWidget {
     this.type = AppButtonType.primary,
     this.isLoading = false,
     this.isFullWidth = true,
-    this.height = 60,
+    this.height = 56,
     this.width,
     this.padding,
     this.borderRadius,
@@ -69,10 +69,10 @@ class AppButton extends StatelessWidget {
           shape: RoundedRectangleBorder(
             borderRadius: borderRadius ??
                 BorderRadiusDirectional.only(
-                  topEnd: Radius.circular(10.r),
-                  topStart: Radius.circular(10.r),
-                  bottomStart: Radius.circular(10.r),
-                  bottomEnd: Radius.circular(25.r),
+                  topEnd: Radius.circular(12.r),
+                  topStart: Radius.circular(12.r),
+                  bottomStart: Radius.circular(12.r),
+                  bottomEnd: Radius.circular(36.r),
                 ),
           ),
           elevation: 0, // Remove shadow
@@ -101,7 +101,13 @@ class AppButton extends StatelessWidget {
           ),
           padding: padding ?? EdgeInsets.symmetric(horizontal: 16.w),
           shape: RoundedRectangleBorder(
-            borderRadius: borderRadius ?? BorderRadius.circular(10.r),
+            borderRadius: borderRadius ??
+                BorderRadiusDirectional.only(
+                  topEnd: Radius.circular(12.r),
+                  topStart: Radius.circular(12.r),
+                  bottomStart: Radius.circular(12.r),
+                  bottomEnd: Radius.circular(36.r),
+                ),
           ),
           backgroundColor:
               backgroundColor ?? Colors.white, // Use provided color or default
@@ -121,7 +127,13 @@ class AppButton extends StatelessWidget {
           foregroundColor: AppColors.primary,
           padding: padding ?? EdgeInsets.symmetric(horizontal: 16.w),
           shape: RoundedRectangleBorder(
-            borderRadius: borderRadius ?? BorderRadius.circular(20.r),
+            borderRadius: borderRadius ??
+                BorderRadiusDirectional.only(
+                  topEnd: Radius.circular(12.r),
+                  topStart: Radius.circular(12.r),
+                  bottomStart: Radius.circular(12.r),
+                  bottomEnd: Radius.circular(36.r),
+                ),
           ),
           backgroundColor:
               backgroundColor, // Use provided color or none (TextButton default)
