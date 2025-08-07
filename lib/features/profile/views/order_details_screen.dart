@@ -33,12 +33,14 @@ class OrderDetailsScreen extends StatelessWidget {
             final cubit = context.read<CheckoutCubit>();
             return SingleChildScrollView(
               child: Padding(
-                padding: EdgeInsets.all(16.w),
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // Order Status Progress
-                    OrderProgress(cubit: cubit),
+                    orderDetail.status != OrderDetailStatus.cancelled
+                        ? OrderProgress(cubit: cubit)
+                        : SizedBox.shrink(),
 
                     SizedBox(height: 24.h),
 
