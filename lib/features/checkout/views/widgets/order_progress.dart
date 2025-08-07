@@ -16,7 +16,7 @@ class OrderProgress extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       // margin: EdgeInsets.symmetric(horizontal: 16.w),
-      // padding: EdgeInsets.symmetric(vertical: 20.h, horizontal: 16.w),
+      padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 12.w),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12.r),
