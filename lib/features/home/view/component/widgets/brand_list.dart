@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:lasco/core/constants/navigation.dart';
 import 'package:lasco/core/locale/app_loacl.dart';
 
 import '../../../../../core/constants/app_colors.dart';
+import '../../../../brand/views/brand_details.dart';
 import 'brand_card.dart';
 
 class BrandList extends StatelessWidget {
@@ -15,8 +17,17 @@ class BrandList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final mazayaBrand = BrandDetailsModel(
+      id: '1',
+      name: 'Mazaya',
+      logoText: 'mazaYa',
+      categories: 'Skin Care, Makeup, Perfumes',
+      address:
+          'Building 36, Street 308, Degla square, maadi, cairo governorate',
+    );
+
     return Column(
-      crossAxisAlignment: CrossAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
           "brands".tr(context),
@@ -31,14 +42,16 @@ class BrandList extends StatelessWidget {
           height: 72.h,
           child: ListView.separated(
             shrinkWrap: true,
-            separatorBuilder: (context, index) => SizedBox(width: 10.w),
+            separatorBuilder: (context, index) => SizedBox(width: 15.w),
             scrollDirection: Axis.horizontal,
             padding: EdgeInsets.zero,
             itemCount: brands.length,
             itemBuilder: (context, index) {
               return BrandCard(
                 imageUrl: brands[index].imageUrl,
-                onTap: () {},
+                onTap: () {
+                  navigateTo(context, BrandDetailsScreen(brand: mazayaBrand));
+                },
               );
             },
           ),

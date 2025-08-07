@@ -10,7 +10,8 @@ class ProductCartCard extends StatelessWidget {
   final String productName;
   final String price;
   final int quantity;
-  final VoidCallback? onTap; // Added onTap callback
+  final VoidCallback? onTap;
+  final bool? isOrder;
 
   const ProductCartCard({
     super.key,
@@ -20,6 +21,7 @@ class ProductCartCard extends StatelessWidget {
     required this.price,
     required this.quantity,
     this.onTap,
+    this.isOrder = false,
   });
 
   @override
@@ -114,48 +116,73 @@ class ProductCartCard extends StatelessWidget {
                         ),
                         Spacer(),
                         // Quantity Selector
-                        Container(
-                          width: 83.w,
-                          height: 32.h,
-                          alignment: Alignment.center,
-                          // padding: EdgeInsets.symmetric(
-                          //     horizontal: 10.w, vertical: 8.h),
-                          decoration: BoxDecoration(
-                            color: AppColors.secoundry,
-                            borderRadius: BorderRadius.circular(12.r),
-                          ),
-                          child: Row(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              GestureDetector(
-                                onTap: () {},
-                                child: Icon(
-                                  Icons.remove,
-                                  size: 18.sp,
-                                  color: Colors.white,
+                        isOrder == false
+                            ? Container(
+                                width: 83.w,
+                                height: 32.h,
+                                alignment: Alignment.center,
+                                // padding: EdgeInsets.symmetric(
+                                //     horizontal: 10.w, vertical: 8.h),
+                                decoration: BoxDecoration(
+                                  color: AppColors.secoundry,
+                                  borderRadius: BorderRadius.circular(12.r),
+                                ),
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    GestureDetector(
+                                      onTap: () {},
+                                      child: Icon(
+                                        Icons.remove,
+                                        size: 18.sp,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    SizedBox(width: 5.w),
+                                    Text(
+                                      quantity.toString(),
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 14.sp,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                    SizedBox(width: 5.w),
+                                    GestureDetector(
+                                      onTap: () {},
+                                      child: Icon(
+                                        Icons.add,
+                                        size: 18.sp,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              )
+                            : Container(
+                                width: 37.w,
+                                height: 37.h,
+                                alignment: Alignment.center,
+                                decoration: BoxDecoration(
+                                  color: AppColors.secoundry,
+                                  borderRadius: BorderRadiusDirectional.only(
+                                    topEnd: Radius.circular(12.r),
+                                    topStart: Radius.circular(12.r),
+                                    bottomStart: Radius.circular(12.r),
+                                    bottomEnd: Radius.circular(36.r),
+                                  ),
+                                ),
+                                child: Center(
+                                  child: Text(
+                                    "X$quantity",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 14.sp,
+                                      fontWeight: FontWeight.w400,
+                                    ),
+                                  ),
                                 ),
                               ),
-                              SizedBox(width: 5.w),
-                              Text(
-                                quantity.toString(),
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 14.sp,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                              SizedBox(width: 5.w),
-                              GestureDetector(
-                                onTap: () {},
-                                child: Icon(
-                                  Icons.add,
-                                  size: 18.sp,
-                                  color: Colors.white,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
                       ],
                     )
                   ],

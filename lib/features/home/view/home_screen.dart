@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lasco/core/locale/app_loacl.dart';
+import 'package:lasco/features/notification/views/notifications_screen.dart';
 
 import '../../../core/component/widgets/app_text_field.dart';
 import '../../../core/constants/app_colors.dart';
@@ -185,35 +186,40 @@ class HomeScreen extends StatelessWidget {
           ),
         ),
         SizedBox(width: 10.w),
-        Stack(
-          clipBehavior: Clip.none,
-          children: [
-            Container(
-              width: 44.w,
-              height: 44.h,
-              decoration: BoxDecoration(
-                shape: BoxShape.circle,
-                color: const Color(0xFFF7F7F7),
-              ),
-              child: Icon(
-                CupertinoIcons.bell,
-                size: 20.sp,
-                color: AppColors.black,
-              ),
-            ),
-            PositionedDirectional(
-              end: 0,
-              top: 0,
-              child: Container(
-                width: 10.w,
-                height: 10.h,
+        GestureDetector(
+          onTap: () {
+            navigateTo(context, NotificationScreen());
+          },
+          child: Stack(
+            clipBehavior: Clip.none,
+            children: [
+              Container(
+                width: 44.w,
+                height: 44.h,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
-                  color: AppColors.red,
+                  color: const Color(0xFFF7F7F7),
+                ),
+                child: Icon(
+                  CupertinoIcons.bell,
+                  size: 20.sp,
+                  color: AppColors.black,
                 ),
               ),
-            ),
-          ],
+              PositionedDirectional(
+                end: 0,
+                top: 0,
+                child: Container(
+                  width: 10.w,
+                  height: 10.h,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: AppColors.red,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ],
     );

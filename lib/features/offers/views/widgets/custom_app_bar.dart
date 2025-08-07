@@ -26,19 +26,25 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
         ),
         centerTitle: isCenter ?? true,
-        leading: Container(
-            width: 30.w,
-            height: 30.w,
-            margin: EdgeInsetsDirectional.only(start: 10.w),
-            decoration: BoxDecoration(
-              color: Color(0XFFF7F7F7),
-              borderRadius: BorderRadius.circular(50.r),
-            ),
-            child: Icon(
-              CupertinoIcons.back,
-              color: AppColors.orange,
-              size: 25.sp,
-            )),
+        leading: GestureDetector(
+          onTap: onTap ??
+              () {
+                Navigator.pop(context);
+              },
+          child: Container(
+              width: 30.w,
+              height: 30.w,
+              margin: EdgeInsetsDirectional.only(start: 10.w),
+              decoration: BoxDecoration(
+                color: Color(0XFFF7F7F7),
+                borderRadius: BorderRadius.circular(50.r),
+              ),
+              child: Icon(
+                CupertinoIcons.back,
+                color: AppColors.orange,
+                size: 25.sp,
+              )),
+        ),
         actions: action,
         backgroundColor: Colors.transparent,
         elevation: 0,

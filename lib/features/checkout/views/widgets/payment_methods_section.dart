@@ -3,15 +3,15 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lasco/core/constants/app_colors.dart';
 import 'package:lasco/core/locale/app_loacl.dart';
 
-class PaymentMethodsSection extends StatefulWidget {
-  const PaymentMethodsSection({super.key});
+class PaymentMethodsSection extends StatelessWidget {
+  final String selectedPaymentMethod;
+  final Function(String) onPaymentSelected;
 
-  @override
-  State<PaymentMethodsSection> createState() => _PaymentMethodsSectionState();
-}
-
-class _PaymentMethodsSectionState extends State<PaymentMethodsSection> {
-  String selectedPaymentMethod = 'full';
+  const PaymentMethodsSection({
+    super.key,
+    required this.selectedPaymentMethod,
+    required this.onPaymentSelected,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -38,11 +38,7 @@ class _PaymentMethodsSectionState extends State<PaymentMethodsSection> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               GestureDetector(
-                onTap: () {
-                  setState(() {
-                    selectedPaymentMethod = 'full';
-                  });
-                },
+                onTap: () => onPaymentSelected('full'),
                 child: Row(
                   children: [
                     Icon(
@@ -68,11 +64,7 @@ class _PaymentMethodsSectionState extends State<PaymentMethodsSection> {
               ),
               SizedBox(width: 12.w),
               GestureDetector(
-                onTap: () {
-                  setState(() {
-                    selectedPaymentMethod = 'partial';
-                  });
-                },
+                onTap: () => onPaymentSelected('partial'),
                 child: Row(
                   children: [
                     Icon(

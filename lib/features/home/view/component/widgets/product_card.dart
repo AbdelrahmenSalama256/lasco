@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lasco/core/constants/app_colors.dart';
+import 'package:lasco/core/locale/app_loacl.dart';
 
 class ProductCard extends StatelessWidget {
   final String productName;
@@ -53,7 +54,7 @@ class ProductCard extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             // Product Image with Sale Badge and Favorite Icon
-            _buildImageSection(),
+            _buildImageSection(context),
 
             // Product Details
             Container(
@@ -87,6 +88,7 @@ class ProductCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
                       Expanded(
+                        flex: 3,
                         child: Column(
                           children: [
                             SizedBox(height: 4.h),
@@ -159,7 +161,7 @@ class ProductCard extends StatelessWidget {
     );
   }
 
-  Widget _buildImageSection() {
+  Widget _buildImageSection(BuildContext context) {
     return Container(
       height: 120.h,
       width: double.infinity,
@@ -207,7 +209,7 @@ class ProductCard extends StatelessWidget {
                   borderRadius: BorderRadius.circular(100.r),
                 ),
                 child: Text(
-                  'Sale',
+                  'sale'.tr(context),
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 10.sp,
@@ -232,10 +234,10 @@ class ProductCard extends StatelessWidget {
                   color: Colors.white,
                   shape: BoxShape.circle,
                 ),
-                child: Icon(
-                  isFavorite ? Icons.favorite : Icons.favorite_border,
-                  color: isFavorite ? AppColors.orange : Colors.grey[600],
-                  size: 16.w,
+                child: SvgPicture.asset(
+                  isFavorite
+                      ? "assets/images/svg/heart-fill.svg"
+                      : "assets/images/svg/heart.svg",
                 ),
               ),
             ),

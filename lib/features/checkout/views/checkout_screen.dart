@@ -1,103 +1,99 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lasco/core/constants/app_colors.dart';
 import 'package:lasco/core/locale/app_loacl.dart';
+import 'package:lasco/features/checkout/views/cubit/checkout_state.dart';
 import 'package:lasco/features/offers/views/widgets/custom_app_bar.dart';
 
 import '../../../core/component/widgets/app_button.dart';
-import 'order_comfrimation_screen.dart';
+import 'cubit/checkout_cubit.dart';
 import 'widgets/cart_items_section.dart';
 import 'widgets/delivery_section.dart';
 import 'widgets/order_details_section.dart';
 import 'widgets/payment_methods_section.dart';
 import 'widgets/promo_code_section.dart';
 
-class CheckoutScreen extends StatefulWidget {
+class CheckoutScreen extends StatelessWidget {
   const CheckoutScreen({super.key});
 
   @override
-  State<CheckoutScreen> createState() => _CheckoutScreenState();
-}
-
-class _CheckoutScreenState extends State<CheckoutScreen> {
-  String selectedPaymentMethod = 'full';
-  final TextEditingController promoController = TextEditingController();
-  double subtotal = 1000.0;
-  double shipping = 50.0;
-  double discount = 0.0;
-
-  double get total => subtotal + shipping - discount;
-
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[50],
-      appBar: CustomAppBar(
-        title: "checkout".tr(context),
-      ),
-      body: Column(
-        children: [
-          Expanded(
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  const CartItemsSection(),
-                  SizedBox(height: 16.h),
-                  const DeliverySection(),
-                  SizedBox(height: 16.h),
-                  PaymentMethodsSection(),
-                  SizedBox(height: 16.h),
-                  PromoCodeSection(promoController: promoController),
-                  SizedBox(height: 16.h),
-                  OrderDetailsSection(
-                    subtotal: subtotal,
-                    shipping: shipping,
-                    discount: discount,
-                    total: total,
+    return BlocProvider(
+      create: (context) => CheckoutCubit(),
+      child:
+          BlocBuilder<CheckoutCubit, CheckoutState>(builder: (context, state) {
+        final cubit = context.read<CheckoutCubit>();
+        return Scaffold(
+          backgroundColor: Colors.grey[50],
+          appBar: CustomAppBar(
+            title: "checkout".tr(context),
+          ),
+          body: SafeArea(
+            // Added SafeArea to avoid overlap with status bar
+            child: Column(
+              children: [
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: ConstrainedBox(
+                      // Ensure the Column has a constrained height
+                      constraints: BoxConstraints(
+                        minHeight: MediaQuery.of(context).size.height -
+                            kToolbarHeight - // AppBar height
+                            20.h - // Padding for button
+                            20.h - // SizedBox height
+                            10.h - // Vertical padding of AppButton
+                            10.h, // Vertical padding of AppButton
+                      ),
+                      child: Column(
+                        children: [
+                          const CartItemsSection(),
+                          SizedBox(height: 16.h),
+                          const DeliverySection(),
+                          SizedBox(height: 16.h),
+                          PaymentMethodsSection(
+                            selectedPaymentMethod: cubit.selectedPaymentMethod,
+                            onPaymentSelected: (method) {
+                              cubit.updatePaymentMethod(method);
+                            },
+                          ),
+                          SizedBox(height: 16.h),
+                          PromoCodeSection(
+                            promoController: cubit.promoController,
+                            onPromoApplied: (code) {
+                              cubit.applyPromoCode(code);
+                            },
+                          ),
+                          SizedBox(height: 16.h),
+                          OrderDetailsSection(
+                            subtotal: cubit.subtotal,
+                            shipping: cubit.shipping,
+                            discount: cubit.discount,
+                            total: cubit.total,
+                          ),
+                          SizedBox(height: 20.h),
+                        ],
+                      ),
+                    ),
                   ),
-                  SizedBox(height: 20.h),
-                ],
-              ),
+                ),
+                Padding(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+                  child: AppButton(
+                    onPressed: () {
+                      cubit.handleConfirmOrder(context);
+                    },
+                    backgroundColor: AppColors.orange,
+                    text: "confirm_order".tr(context),
+                  ),
+                ),
+                SizedBox(height: 20.h),
+              ],
             ),
           ),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
-            child: AppButton(
-              onPressed: () {
-                _handleConfirmOrder();
-              },
-              backgroundColor: AppColors.orange,
-              text: "confirm_order".tr(context),
-            ),
-          ),
-          SizedBox(height: 20.h),
-        ],
-      ),
+        );
+      }),
     );
-  }
-
-  void _handleConfirmOrder() {
-    // Generate order ID and navigate to confirmation
-    String orderId = "123456";
-    String orderDate = "Mon 4 August, 2025";
-
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => OrderConfirmationScreen(
-          orderId: orderId,
-          orderDate: orderDate,
-          subtotal: subtotal,
-          shipping: shipping,
-          discount: discount,
-        ),
-      ),
-    );
-  }
-
-  @override
-  void dispose() {
-    promoController.dispose();
-    super.dispose();
   }
 }

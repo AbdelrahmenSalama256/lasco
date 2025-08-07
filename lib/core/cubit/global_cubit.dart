@@ -33,8 +33,7 @@ class GlobalCubit extends Cubit<GlobalState> {
   Future<void> changeLanguage() async {
     emit(LanguageChangingState());
     await Future.delayed(const Duration(milliseconds: 300));
-    final newLanguage =
-        sl<CacheHelper>().getCachedLanguage() == "en" ? "ar" : "en";
+    final newLanguage = language == "en" ? "ar" : "en";
     await sl<CacheHelper>().cacheLanguage(newLanguage);
     language = newLanguage;
     PrintUtil.debug("Language changed to $language");

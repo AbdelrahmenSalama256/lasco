@@ -10,8 +10,8 @@ class ProductCartCard extends StatelessWidget {
   final String productName;
   final String price;
   final int quantity;
-  final VoidCallback? onTap; // Added onTap callback
-
+  final VoidCallback? onTap;
+  final bool? isOrder;
   const ProductCartCard({
     super.key,
     this.image,
@@ -20,6 +20,7 @@ class ProductCartCard extends StatelessWidget {
     required this.price,
     required this.quantity,
     this.onTap,
+    this.isOrder = false,
   });
 
   @override
@@ -123,6 +124,13 @@ class ProductCartCard extends StatelessWidget {
                           decoration: BoxDecoration(
                             color: AppColors.secoundry,
                             borderRadius: BorderRadius.circular(12.r),
+
+//            borderRadius: BorderRadiusDirectional.only(
+                            //   topEnd: Radius.circular(12.r),
+                            //   topStart: Radius.circular(12.r),
+                            //   bottomStart: Radius.circular(12.r),
+                            //   bottomEnd: Radius.circular(36.r),
+                            // ),
                           ),
                           child: Row(
                             mainAxisSize: MainAxisSize.min,
@@ -155,7 +163,7 @@ class ProductCartCard extends StatelessWidget {
                               ),
                             ],
                           ),
-                        ),
+                        )
                       ],
                     )
                   ],

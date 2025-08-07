@@ -13,7 +13,7 @@ class AppButton extends StatelessWidget {
   final double height;
   final double? width;
   final EdgeInsetsGeometry? padding;
-  final BorderRadius? borderRadius;
+  final BorderRadiusGeometry? borderRadius;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final TextStyle? textStyle;

@@ -18,16 +18,19 @@ class BrandCard extends StatelessWidget {
       child: Container(
         width: 72.w,
         height: 72.h,
+        alignment: Alignment.center,
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16.r),
-            boxShadow: [
-              BoxShadow(
-                  blurRadius: 15,
-                  spreadRadius: 0,
-                  offset: Offset(0, 0),
-                  color: Color(0Xff000000).withOpacity(0.1)),
-            ]),
+          borderRadius: BorderRadius.circular(16.r),
+          color: Colors.white,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.1),
+              blurRadius: 7.r,
+              offset: Offset(0, 0.h),
+            ),
+          ],
+        ),
         child: Image.asset(
           imageUrl,
           fit: BoxFit.cover,
@@ -41,8 +44,8 @@ class BrandCard extends StatelessWidget {
 
   Widget _buildPlaceholderImage() {
     return Container(
-      height: 80.h,
-      width: 60.w,
+      width: 72.w,
+      height: 72.h,
       decoration: BoxDecoration(
         color: Colors.orange[100],
         borderRadius: BorderRadius.circular(8.r),

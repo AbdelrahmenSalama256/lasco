@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:lasco/core/constants/app_colors.dart';
 
 class AppTextField extends StatefulWidget {
   final TextEditingController controller;
@@ -28,6 +27,7 @@ class AppTextField extends StatefulWidget {
   final Widget? labelHintWidget;
   final TextDirection? textDirection;
   final TextAlign textAlign;
+  final BorderRadiusDirectional? radius;
   final AutovalidateMode autovalidateMode;
 
   const AppTextField({
@@ -35,6 +35,7 @@ class AppTextField extends StatefulWidget {
     required this.controller,
     this.labelText,
     this.labelHintWidget,
+    this.radius,
     this.focusNode,
     this.hintText,
     this.errorText,
@@ -90,6 +91,10 @@ class _AppTextFieldState extends State<AppTextField> {
 
   @override
   Widget build(BuildContext context) {
+    BorderRadius effectiveRadius =
+        (widget.radius ?? BorderRadiusDirectional.circular(64.r))
+            .resolve(Directionality.of(context));
+
     return TextFormField(
       controller: widget.controller,
       focusNode: _focusNode,
@@ -117,9 +122,9 @@ class _AppTextFieldState extends State<AppTextField> {
         labelText: widget.labelText,
         hintText: widget.hintText,
         hintStyle: TextStyle(
-          fontSize: 13.sp,
-          fontWeight: FontWeight.w500,
-          color: const Color(0xff515151),
+          fontSize: 12.sp,
+          fontWeight: FontWeight.w400,
+          color: const Color(0xffB2B2B2),
         ),
         labelStyle: TextStyle(
           fontSize: 14.sp,
@@ -133,7 +138,7 @@ class _AppTextFieldState extends State<AppTextField> {
                 icon: Icon(
                   _obscureText ? Icons.visibility_off : Icons.visibility,
                   color: _hasFocus
-                      ? AppColors.primary
+                      ? Colors.transparent
                       : const Color(0xff515151).withOpacity(0.7),
                   size: 20.sp,
                 ),
@@ -150,30 +155,30 @@ class _AppTextFieldState extends State<AppTextField> {
               vertical: 13.h,
             ),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(64.r),
+          borderRadius: effectiveRadius,
           borderSide: const BorderSide(
             color: Color(0xffF7F7F7),
           ),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(64.r),
+          borderRadius: effectiveRadius,
           borderSide: const BorderSide(color: Color(0xffF7F7F7)),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(64.r),
+          borderRadius: effectiveRadius,
           borderSide: const BorderSide(
-            color: AppColors.primary,
+            color: Colors.transparent,
             width: 2,
           ),
         ),
         errorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(64.r),
+          borderRadius: effectiveRadius,
           borderSide: const BorderSide(
             color: Color(0xFFE53935),
           ),
         ),
         focusedErrorBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(64.r),
+          borderRadius: effectiveRadius,
           borderSide: const BorderSide(
             color: Color(0xFFE53935),
             width: 2,

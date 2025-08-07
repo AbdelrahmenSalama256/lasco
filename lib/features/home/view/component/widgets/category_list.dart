@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lasco/core/constants/navigation.dart';
 import 'package:lasco/core/locale/app_loacl.dart';
+import 'package:lasco/features/shop/views/shop_screen.dart';
 
 import '../../../../../core/constants/app_colors.dart';
 
@@ -42,33 +44,38 @@ class CategoryList extends StatelessWidget {
   }
 
   Widget _buildCategoryItem(BuildContext context, CategoryModel category) {
-    return Column(
-      children: [
-        Container(
-          width: 66.w,
-          height: 66.h,
-          padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(8.r),
-            color: const Color(0xFFf7f7f7),
+    return GestureDetector(
+      onTap: () {
+        navigateTo(context, ShopScreen());
+      },
+      child: Column(
+        children: [
+          Container(
+            width: 66.w,
+            height: 66.h,
+            padding: EdgeInsets.symmetric(horizontal: 15.w, vertical: 15.h),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8.r),
+              color: const Color(0xFFf7f7f7),
+            ),
+            child: SvgPicture.asset(
+              category.icon,
+              width: 34.w,
+              height: 34.h,
+              fit: BoxFit.contain,
+            ),
           ),
-          child: SvgPicture.asset(
-            category.icon,
-            width: 34.w,
-            height: 34.h,
-            fit: BoxFit.contain,
+          SizedBox(height: 5.h),
+          Text(
+            category.name.tr(context),
+            style: TextStyle(
+              fontSize: 12.sp,
+              fontWeight: FontWeight.w400,
+              color: AppColors.black,
+            ),
           ),
-        ),
-        SizedBox(height: 5.h),
-        Text(
-          category.name.tr(context),
-          style: TextStyle(
-            fontSize: 12.sp,
-            fontWeight: FontWeight.w400,
-            color: AppColors.black,
-          ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }

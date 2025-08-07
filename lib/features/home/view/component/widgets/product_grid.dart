@@ -8,14 +8,14 @@ import 'package:lasco/features/product/views/product_details_screen.dart';
 import 'product_card.dart';
 
 class ProductGrid extends StatelessWidget {
-  final String title;
+  final String? title;
   final List<ProductModel> products;
   final int crossAxisCount;
   final double childAspectRatio;
 
   const ProductGrid({
     super.key,
-    required this.title,
+    this.title,
     required this.products,
     this.crossAxisCount = 2,
     this.childAspectRatio = 0.75,
@@ -27,14 +27,16 @@ class ProductGrid extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         // Section Title
-        Text(
-          title,
-          style: TextStyle(
-            fontSize: 18.sp,
-            fontWeight: FontWeight.w400,
-            color: AppColors.black,
-          ),
-        ),
+        title != null
+            ? Text(
+                title!,
+                style: TextStyle(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.w400,
+                  color: AppColors.black,
+                ),
+              )
+            : SizedBox.shrink(),
 
         SizedBox(height: 12.h),
 

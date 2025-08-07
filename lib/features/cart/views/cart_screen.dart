@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lasco/core/constants/app_colors.dart';
 import 'package:lasco/core/constants/navigation.dart';
@@ -7,6 +8,8 @@ import 'package:lasco/core/locale/app_loacl.dart';
 import 'package:lasco/features/cart/views/widgets/product_cart_card.dart';
 import 'package:lasco/features/checkout/views/checkout_screen.dart';
 import 'package:lasco/features/offers/views/widgets/custom_app_bar.dart';
+
+import '../../../core/cubit/global_cubit.dart';
 
 class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
@@ -59,6 +62,9 @@ class CartScreen extends StatelessWidget {
       backgroundColor: Colors.white,
       appBar: CustomAppBar(
         title: "cart".tr(context),
+        onTap: () {
+          context.read<GlobalCubit>().changeBottomNavIndex(0);
+        },
       ),
       body: Column(
         children: [
@@ -129,7 +135,7 @@ class CartScreen extends StatelessWidget {
                     },
                     child: Center(
                       child: Text(
-                        "Checkout",
+                        "checkout".tr(context),
                         style: TextStyle(
                           fontSize: 16.sp,
                           color: AppColors.white,
