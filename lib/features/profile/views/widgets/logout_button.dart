@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lasco/core/constants/app_colors.dart';
+import 'package:lasco/core/cubit/global_cubit.dart';
 import 'package:lasco/core/locale/app_loacl.dart';
 
 class LogoutButton extends StatelessWidget {
@@ -34,10 +36,15 @@ class LogoutButton extends StatelessWidget {
                 ),
                 child: Padding(
                   padding: EdgeInsets.all(8.w),
-                  child: SvgPicture.asset(
-                    "assets/images/svg/logout.svg",
-                    width: 22.w,
-                    height: 22.h,
+                  child: Transform.flip(
+                    flipX: context.read<GlobalCubit>().language == "ar"
+                        ? true
+                        : false,
+                    child: SvgPicture.asset(
+                      "assets/images/svg/logout.svg",
+                      width: 22.w,
+                      height: 22.h,
+                    ),
                   ),
                 ),
               ),
