@@ -23,8 +23,7 @@ class CheckoutCubit extends Cubit<CheckoutState> {
       'price': 500.0,
       'quantity': 2,
       'deliveryDate': 'Deliver between 10 Aug, 12 Aug',
-      'imageUrl':
-          'https://hebbkx1anhila5yf.public.blob.vercel-storage.com/image-LIdLd2FfNXFXugzgvQMJwT42FyXZE3.png',
+      'imageUrl': 'assets/images/png/test-product.png',
     },
   ];
   String? orderId;
@@ -110,11 +109,11 @@ class CheckoutCubit extends Cubit<CheckoutState> {
     );
   }
 
+  OrderDetailModel? orderDetail;
+
   void setOrderDetails(OrderDetailModel orderDetail) {
-    // Set all the cubit properties based on the order details
-    orderId = orderDetail.orderId;
-    orderDate = orderDetail.orderDate;
-    // Set other properties as needed
+    this.orderDetail = orderDetail;
+    emit(CheckoutUpdated()); // Notify listeners about the change
   }
 
   @override

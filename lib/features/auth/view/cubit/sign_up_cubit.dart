@@ -31,8 +31,9 @@ class SignUpCubit extends Cubit<SignUpState> {
 
   void signUp(BuildContext context) {
     if (!formKey.currentState!.validate()) return;
-
-    emit(SignUpLoading());
+    Future.delayed(const Duration(seconds: 2), () {
+      emit(SignUpSuccess());
+    });
   }
 
   @override

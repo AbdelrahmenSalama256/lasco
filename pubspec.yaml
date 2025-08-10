@@ -68,6 +68,7 @@ dependencies:
   salomon_bottom_bar: ^3.3.2
   dotted_border: ^2.1.0
   dotted_line: ^3.2.3
+  flutter_rating_bar: ^4.0.1
 
 dev_dependencies:
   flutter_test:

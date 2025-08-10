@@ -155,5 +155,15 @@
   "please_enter_otp": "الرجاء إدخال رمز التحقق",
   "otp_resent": "تم إعادة إرسال رمز التحقق",
   "password_changed_successfully": "تم تغيير كلمة المرور بنجاح",
-  "please_enter_valid_passwords": "من فضلك، أدخل كلمات مرور صالحة"
+  "please_enter_valid_passwords": "من فضلك، أدخل كلمات مرور صالحة",
+  "share_you_experience": "شارك تجربتك",
+  "please_provide_rating_and_review": "من فضلك، قم بتقديم تقييم ومراجعة",
+  "feedback_prompt": "نود أن نسمع ملاحظاتك!",
+  "submit_review": "إرسال المراجعة",
+  "rate_your_experience": "قيم تجربتك",
+  "maybe_later": "ربما لاحقا",
+  "place_details": "تفاصيل المكان",
+  "products": "المنتجات",
+  "offers": "العروض",
+  "buy_2_get_1_free": "اشترِ 2 واحصل على الثالث مجانًا"
 }

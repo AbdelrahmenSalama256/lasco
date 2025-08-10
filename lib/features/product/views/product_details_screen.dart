@@ -56,7 +56,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
           // Custom App Bar
           Positioned(
-            top: MediaQuery.of(context).padding.top - 30.h,
+            top: MediaQuery.of(context).padding.top - 35.h,
             left: 0,
             right: 0,
             child: CustomAppBar(
@@ -71,22 +71,20 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             left: 0,
             right: 0,
             bottom: 0,
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    const ProductImageSection(),
-                    Expanded(
-                      child: ProductDetailsSection(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Row(
+                    children: [
+                      const ProductImageSection(),
+                      ProductDetailsSection(
                         quantity: quantity,
                         onIncrement: incrementQuantity,
                         onDecrement: decrementQuantity,
                       ),
-                    ),
-                  ],
-                ),
-                Expanded(
-                  child: SingleChildScrollView(
+                    ],
+                  ),
+                  SingleChildScrollView(
                     child: Column(
                       children: [
                         DescriptionSection(
@@ -99,8 +97,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       ],
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ],

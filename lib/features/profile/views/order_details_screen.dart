@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lasco/core/constants/app_colors.dart';
 import 'package:lasco/core/locale/app_loacl.dart';
 import 'package:lasco/features/offers/views/widgets/custom_app_bar.dart';
+import 'package:lasco/features/profile/views/share_experince_sheet.dart';
 
 import '../../checkout/views/cubit/checkout_cubit.dart';
 import '../../checkout/views/widgets/order_details_section.dart';
@@ -67,14 +69,51 @@ class OrderDetailsScreen extends StatelessWidget {
                     OrderItems(cubit: cubit),
 
                     SizedBox(height: 20.h),
-
+                    orderDetail.status == OrderDetailStatus.delivered
+                        ? Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Center(
+                                  child: InkWell(
+                                onTap: () {
+                                  showModalBottomSheet(
+                                    context: context,
+                                    isScrollControlled: true,
+                                    showDragHandle: true,
+                                    backgroundColor: AppColors.white,
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius:
+                                          BorderRadiusDirectional.only(
+                                        topEnd: Radius.circular(50.r),
+                                        topStart: Radius.circular(50.r),
+                                      ),
+                                    ),
+                                    builder: (context) {
+                                      return ShareExperienceBottomSheet();
+                                    },
+                                  );
+                                },
+                                child: Text(
+                                  "share_you_experience".tr(context),
+                                  style: TextStyle(
+                                    fontSize: 14.sp,
+                                    fontWeight: FontWeight.w400,
+                                    color: AppColors.orange,
+                                  ),
+                                ),
+                              )),
+                              SizedBox(height: 20.h),
+                            ],
+                          )
+                        : SizedBox.shrink(),
                     // Order Details Summary
                     OrderDetailsSection(
                       subtotal: double.parse(
                           orderDetail.subtotal.replaceAll(' LE', '')),
                       shipping: double.parse(
                           orderDetail.shipping.replaceAll(' LE', '')),
-                      discount: 0, // Add discount if available
+                      discount: 0,
                       total:
                           double.parse(orderDetail.total.replaceAll(' LE', '')),
                     ),
@@ -228,8 +267,9 @@ class OrderDetailsScreen extends StatelessWidget {
                   children: [
                     Icon(
                       Icons.radio_button_checked,
-                      color:
-                          method.isCompleted ? Colors.green : AppColors.primary,
+                      color: method.isCompleted
+                          ? AppColors.secoundry
+                          : AppColors.primary,
                       size: 18.w,
                     ),
                     SizedBox(width: 8.w),
@@ -244,11 +284,34 @@ class OrderDetailsScreen extends StatelessWidget {
                   ],
                 ),
               )),
+          SizedBox(
+            height: 6.h,
+          ),
+          Row(
+            children: [
+              SvgPicture.asset(
+                "assets/images/svg/cash-on-delivery.svg",
+              ),
+              SizedBox(
+                width: 8.w,
+              ),
+              Text(
+                "remaining_balance_due_on_delivery".tr(context),
+                style: TextStyle(
+                  fontSize: 12.sp,
+                  color: AppColors.red,
+                  fontWeight: FontWeight.w400,
+                ),
+              ),
+            ],
+          ),
         ],
       ),
     );
   }
 }
+
+// New StatefulWidget for the bottom sheet
 
 // Models (unchanged)
 enum OrderDetailStatus {
@@ -256,6 +319,21 @@ enum OrderDetailStatus {
   onWay,
   delivered,
   cancelled,
+}
+
+extension OrderDetailStatusValue on OrderDetailStatus {
+  int get value {
+    switch (this) {
+      case OrderDetailStatus.processing:
+        return 0;
+      case OrderDetailStatus.onWay:
+        return 1;
+      case OrderDetailStatus.delivered:
+        return 2;
+      case OrderDetailStatus.cancelled:
+        return -1;
+    }
+  }
 }
 
 enum OrderStepStatus {

@@ -6,6 +6,7 @@ import 'package:lasco/core/component/widgets/app_text_field.dart';
 import 'package:lasco/core/constants/app_colors.dart';
 import 'package:lasco/core/locale/app_loacl.dart';
 import 'package:lasco/features/auth/view/cubit/login_state.dart';
+import 'package:lasco/features/auth/view/sign_up_screen.dart';
 import 'package:lasco/features/base/views/base_screen.dart';
 
 import '../../../core/constants/navigation.dart';
@@ -107,6 +108,8 @@ class LoginScreen extends StatelessWidget {
                                 hintText: "enter_your_password".tr(context),
                                 labelText: "password".tr(context),
                                 obscureText: true,
+                                validator: (value) =>
+                                    Validators.validatePassword(value, context),
                               ),
                               // Forgot Password Text with inkwell
                               SizedBox(height: 25.h),
@@ -154,7 +157,7 @@ class LoginScreen extends StatelessWidget {
                                   SizedBox(width: 8.w),
                                   InkWell(
                                     onTap: () {
-                                      Navigator.pop(context);
+                                      navigateTo(context, SignUpScreen());
                                     },
                                     child: Text(
                                       "sign_up".tr(context),
@@ -163,6 +166,7 @@ class LoginScreen extends StatelessWidget {
                                         fontWeight: FontWeight.w400,
                                         color: AppColors.orange,
                                         decoration: TextDecoration.underline,
+                                        decorationColor: AppColors.orange,
                                       ),
                                     ),
                                   ),
@@ -210,6 +214,7 @@ class LoginScreen extends StatelessWidget {
                                     fontSize: 14.sp,
                                     fontWeight: FontWeight.w400,
                                     decoration: TextDecoration.underline,
+                                    decorationColor: AppColors.orange,
                                     color: AppColors.orange,
                                   ),
                                 ),

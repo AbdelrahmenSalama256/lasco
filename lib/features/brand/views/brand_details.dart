@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lasco/core/constants/app_colors.dart';
+import 'package:lasco/core/cubit/global_cubit.dart';
 import 'package:lasco/core/locale/app_loacl.dart';
 import 'package:lasco/features/offers/views/widgets/custom_app_bar.dart';
 
@@ -182,8 +184,42 @@ class _BrandDetailsScreenState extends State<BrandDetailsScreen>
           fontWeight: FontWeight.w400,
         ),
         tabs: [
-          Tab(text: "products".tr(context)),
-          Tab(text: "offers".tr(context)),
+          Tab(
+            child: Container(
+              constraints: BoxConstraints(
+                minWidth: 90.w,
+              ),
+              alignment: Alignment.center,
+              child: Text(
+                "products".tr(context),
+                style: TextStyle(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w400,
+                  fontFamily: context.read<GlobalCubit>().language == "ar"
+                      ? 'Arabic'
+                      : "English",
+                ),
+              ),
+            ),
+          ),
+          Tab(
+            child: Container(
+              constraints: BoxConstraints(
+                minWidth: 90.w,
+              ),
+              alignment: Alignment.center,
+              child: Text(
+                "offers".tr(context),
+                style: TextStyle(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w400,
+                  fontFamily: context.read<GlobalCubit>().language == "ar"
+                      ? 'Arabic'
+                      : "English",
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );
@@ -191,11 +227,11 @@ class _BrandDetailsScreenState extends State<BrandDetailsScreen>
 
   Widget _buildProductsTab() {
     return SingleChildScrollView(
-      padding: EdgeInsets.only(top: 10.h),
+      padding: EdgeInsets.symmetric(vertical: 10.h, horizontal: 16.w),
       child: ProductGrid(
         title: "",
         products: _getBrandProducts(),
-        childAspectRatio: 0.72,
+        // childAspectRatio: 0.72,
       ),
     );
   }
@@ -204,6 +240,7 @@ class _BrandDetailsScreenState extends State<BrandDetailsScreen>
     return SingleChildScrollView(
       padding: EdgeInsets.all(16.w),
       child: Column(
+        spacing: 10.h,
         children: _getBrandOffers().map((offer) {
           return OfferGridCard(
             title: offer.title,
@@ -269,19 +306,19 @@ class _BrandDetailsScreenState extends State<BrandDetailsScreen>
     return [
       BrandOfferModel(
         id: '1',
-        title: 'Buy 2 Get 1 free',
+        title: 'buy_2_get_1_free'.tr(context),
         category: 'Skin Care',
         imageUrl: 'assets/images/png/test-product.png',
       ),
       BrandOfferModel(
         id: '2',
-        title: 'Buy 2 Get 1 free',
+        title: 'buy_2_get_1_free'.tr(context),
         category: 'Skin Care',
         imageUrl: 'assets/images/png/test-product.png',
       ),
       BrandOfferModel(
         id: '3',
-        title: 'Buy 2 Get 1 free',
+        title: 'buy_2_get_1_free'.tr(context),
         category: 'Skin Care',
         imageUrl: 'assets/images/png/test-product.png',
       ),

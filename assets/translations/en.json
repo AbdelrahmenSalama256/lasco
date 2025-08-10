@@ -155,5 +155,15 @@
   "please_enter_otp": "Please enter OTP",
   "otp_resent": "OTP has been resent",
   "password_changed_successfully": "Password changed successfully",
-  "please_enter_valid_passwords": "Please enter valid passwords"
+  "please_enter_valid_passwords": "Please enter valid passwords",
+  "share_you_experience": "Share your experience",
+  "please_provide_rating_and_review": "Please provide a rating and review",
+  "feedback_prompt": "We'd love to hear your feedback!",
+  "submit_review": "Submit Review",
+  "rate_your_experience": "Rate Your Experience",
+  "maybe_later": "Maybe Later",
+  "place_details": "Place Details",
+  "products": "Products",
+  "offers": "Offers",
+  "buy_2_get_1_free": "Buy 2 Get 1 free"
 }

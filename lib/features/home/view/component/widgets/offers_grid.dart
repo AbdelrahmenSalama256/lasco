@@ -78,6 +78,7 @@ class SpecialOffersGrid extends StatelessWidget {
               fontWeight: FontWeight.w400,
               color: AppColors.secoundry,
               decoration: TextDecoration.underline,
+              decorationColor: AppColors.orange,
             ),
           ),
         ),

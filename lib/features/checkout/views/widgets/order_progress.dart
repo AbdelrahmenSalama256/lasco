@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lasco/core/constants/app_colors.dart';
 import 'package:lasco/core/locale/app_loacl.dart';
 
+import '../../../profile/views/order_details_screen.dart';
 import '../cubit/checkout_cubit.dart';
 
 class OrderProgress extends StatelessWidget {
@@ -14,20 +15,13 @@ class OrderProgress extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final status = cubit.orderDetail?.status ?? OrderDetailStatus.processing;
+
     return Container(
-      // margin: EdgeInsets.symmetric(horizontal: 16.w),
       padding: EdgeInsets.symmetric(vertical: 12.h, horizontal: 12.w),
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(12.r),
-        // boxShadow: [
-        //   BoxShadow(
-        //     color: Colors.grey.withOpacity(0.1),
-        //     spreadRadius: 1,
-        //     blurRadius: 8,
-        //     offset: const Offset(0, 2),
-        //   ),
-        // ],
       ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -40,29 +34,38 @@ class OrderProgress extends StatelessWidget {
             isActive: true,
             isCompleted: true,
           ),
-          _buildProgressLine(isCompleted: true),
+          _buildProgressLine(
+            isCompleted: status != OrderDetailStatus.processing,
+          ),
           _buildProgressStep(
             context,
             iconPath: "assets/images/svg/proccing.svg",
             titleKey: "order_status_processing",
-            isActive: cubit.orderId != null,
-            isCompleted: cubit.orderId != null,
+            isActive: status != OrderDetailStatus.processing,
+            isCompleted: status != OrderDetailStatus.processing,
           ),
-          _buildProgressLine(isCompleted: false),
+          _buildProgressLine(
+            isCompleted: status == OrderDetailStatus.onWay ||
+                status == OrderDetailStatus.delivered,
+          ),
           _buildProgressStep(
             context,
             iconPath: "assets/images/svg/onway.svg",
             titleKey: "order_status_on_way",
-            isActive: false,
-            isCompleted: false,
+            isActive: status == OrderDetailStatus.onWay ||
+                status == OrderDetailStatus.delivered,
+            isCompleted: status == OrderDetailStatus.onWay ||
+                status == OrderDetailStatus.delivered,
           ),
-          _buildProgressLine(isCompleted: false),
+          _buildProgressLine(
+            isCompleted: status == OrderDetailStatus.delivered,
+          ),
           _buildProgressStep(
             context,
             iconPath: "assets/images/svg/diliverd.svg",
             titleKey: "order_status_delivered",
-            isActive: false,
-            isCompleted: false,
+            isActive: status == OrderDetailStatus.delivered,
+            isCompleted: status == OrderDetailStatus.delivered,
           ),
         ],
       ),

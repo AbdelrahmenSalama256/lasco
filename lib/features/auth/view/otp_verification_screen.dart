@@ -9,6 +9,7 @@ import 'package:lasco/core/constants/navigation.dart';
 import 'package:lasco/core/locale/app_loacl.dart';
 import 'package:lasco/core/utils/validator.dart';
 import 'package:lasco/features/auth/view/change_password_screen.dart';
+import 'package:lasco/features/base/views/base_screen.dart';
 import 'package:pinput/pinput.dart';
 
 import '../../offers/views/widgets/custom_app_bar.dart';
@@ -17,10 +18,12 @@ import 'cubit/login_state.dart';
 
 class OtpVerificationScreen extends StatelessWidget {
   final String phoneNumber;
+  final bool? isResetPassword;
 
   const OtpVerificationScreen({
     super.key,
     required this.phoneNumber,
+    this.isResetPassword = false,
   });
 
   @override
@@ -47,7 +50,11 @@ class OtpVerificationScreen extends StatelessWidget {
         child: BlocConsumer<LoginCubit, LoginState>(
           listener: (context, state) {
             if (state is OtpVerificationSuccess) {
-              navigateTo(context, ChangePasswordScreen());
+              if (isResetPassword == false) {
+                navigateTo(context, ChangePasswordScreen());
+              } else {
+                navigateAndFinish(context, BaseScreen());
+              }
               // Navigator.push(context, MaterialPageRoute(builder: (context) => ResetPasswordScreen()));
             } else if (state is OtpVerificationError) {
               showToast(

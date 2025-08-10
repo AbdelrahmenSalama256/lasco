@@ -38,7 +38,6 @@ class LoginCubit extends Cubit<LoginState> {
     if (!formKey.currentState!.validate()) return;
 
     emit(LoginLoading());
-    // TODO: Implement login logic (e.g., API call)
     Future.delayed(const Duration(seconds: 2), () {
       emit(LoginSuccess());
     });

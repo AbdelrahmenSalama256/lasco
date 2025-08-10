@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lasco/core/constants/app_colors.dart';
@@ -85,7 +84,7 @@ class OfferGridCard extends StatelessWidget {
                           ),
                         ),
                         child: Icon(
-                          CupertinoIcons.arrow_right,
+                          Icons.arrow_forward_outlined,
                           color: AppColors.white,
                           size: 20.sp,
                         ),

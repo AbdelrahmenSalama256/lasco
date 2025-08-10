@@ -163,6 +163,7 @@ class AddressBottomSheet extends StatelessWidget {
                                   fontWeight: FontWeight.w400,
                                   color: AppColors.orange,
                                   decoration: TextDecoration.underline,
+                                  decorationColor: AppColors.orange,
                                 ),
                               ),
                             ],
