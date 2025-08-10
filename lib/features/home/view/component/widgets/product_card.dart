@@ -40,7 +40,7 @@ class ProductCard extends StatelessWidget {
       onTap: ontap,
       child: Container(
         width: double.infinity,
-        padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 4.h),
+        padding: EdgeInsets.symmetric(horizontal: 5.w, vertical: 2.h),
         decoration: BoxDecoration(
           color: Color(0xffF7F7F7),
           borderRadius: BorderRadiusDirectional.only(
@@ -59,6 +59,7 @@ class ProductCard extends StatelessWidget {
             // Product Details
             Container(
               padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 10.h),
+              margin: EdgeInsets.only(top: 5.h),
               decoration: BoxDecoration(
                 color: AppColors.white,
                 borderRadius: BorderRadiusDirectional.only(
@@ -79,74 +80,71 @@ class ProductCard extends StatelessWidget {
                       fontWeight: FontWeight.w400,
                       color: AppColors.black,
                     ),
+                    // maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
+
+                  // SizedBox(height: 4.h),
+
+                  // Category
+                  Text(
+                    category,
+                    style: TextStyle(
+                      fontSize: 12.sp,
+                      fontWeight: FontWeight.w400,
+                      color: AppColors.secoundry,
+                    ),
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
 
-                  SizedBox(height: 4.h),
+                  // SizedBox(height: 8.h),
                   Row(
-                    crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Expanded(
-                        flex: 3,
-                        child: Column(
-                          children: [
-                            SizedBox(height: 4.h),
-
-                            // Category
-                            Text(
-                              category,
-                              style: TextStyle(
-                                fontSize: 12.sp,
-                                fontWeight: FontWeight.w400,
-                                color: AppColors.secoundry,
+                      // Rating and Price Row
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          // Rating
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Icon(
+                                    Icons.star,
+                                    color: Colors.amber,
+                                    size: 16.sp,
+                                  ),
+                                  SizedBox(width: 2.w),
+                                  Text(
+                                    rating.toString(),
+                                    style: TextStyle(
+                                      fontSize: 12.sp,
+                                      fontWeight: FontWeight.w400,
+                                      color: AppColors.black,
+                                    ),
+                                  ),
+                                ],
                               ),
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                            ),
-
-                            // SizedBox(height: 8.h),
-
-                            // Rating and Price Row
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                // Rating
-                                Row(
-                                  children: [
-                                    Icon(
-                                      Icons.star,
-                                      color: Colors.amber,
-                                      size: 16.sp,
-                                    ),
-                                    SizedBox(width: 2.w),
-                                    Text(
-                                      rating.toString(),
-                                      style: TextStyle(
-                                        fontSize: 12.sp,
-                                        fontWeight: FontWeight.w400,
-                                        color: AppColors.black,
-                                      ),
-                                    ),
-                                  ],
+                              // Price
+                              Text(
+                                price,
+                                style: TextStyle(
+                                  fontSize: 16.sp,
+                                  fontWeight: FontWeight.bold,
+                                  color: AppColors.orange,
                                 ),
-                              ],
-                            ),
-
-                            SizedBox(height: 8.h),
-
-                            // Price
-                            Text(
-                              price,
-                              style: TextStyle(
-                                fontSize: 16.sp,
-                                fontWeight: FontWeight.bold,
-                                color: AppColors.orange,
                               ),
-                            ),
-                          ],
-                        ),
+                            ],
+                          ),
+                        ],
                       ),
+
+                      // SizedBox(height: 6.h),
+
                       Spacer(),
                       // Add to Cart Button
                       _buildAddToCartButton(),

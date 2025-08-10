@@ -43,102 +43,113 @@ class BaseScreen extends StatelessWidget {
                 ProfileScreen(),
               ],
             ),
-            bottomNavigationBar: SalomonBottomBar(
-              currentIndex: cubit.currentNavIndex,
-              onTap: (index) => cubit.changeBottomNavIndex(index),
-              items: [
-                /// Home
-                SalomonBottomBarItem(
-                  icon: SvgPicture.asset(
-                    "assets/images/svg/home.svg",
-                    color: cubit.currentNavIndex == 0
-                        ? AppColors.orange
-                        : const Color(0xffB2B2B2),
-                  ),
-                  title: Text(
-                    "home".tr(context),
-                    style: TextStyle(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w400,
+            bottomNavigationBar: Container(
+              padding: EdgeInsets.only(left: 10.w, right: 10.w, top: 10.h),
+              decoration: BoxDecoration(color: Colors.white, boxShadow: [
+                BoxShadow(
+                  offset: Offset(0, 0),
+                  blurRadius: 15,
+                  spreadRadius: 0,
+                  color: AppColors.black.withOpacity(0.2),
+                )
+              ]),
+              child: SalomonBottomBar(
+                currentIndex: cubit.currentNavIndex,
+                onTap: (index) => cubit.changeBottomNavIndex(index),
+                items: [
+                  /// Home
+                  SalomonBottomBarItem(
+                    icon: SvgPicture.asset(
+                      "assets/images/svg/home.svg",
+                      color: cubit.currentNavIndex == 0
+                          ? AppColors.orange
+                          : const Color(0xffB2B2B2),
+                    ),
+                    title: Text(
+                      "home".tr(context),
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.orange,
+                      ),
+                    ),
+                    selectedColor: AppColors.orange,
+                    activeIcon: SvgPicture.asset(
+                      "assets/images/svg/home.svg",
                       color: AppColors.orange,
                     ),
                   ),
-                  selectedColor: AppColors.orange,
-                  activeIcon: SvgPicture.asset(
-                    "assets/images/svg/home.svg",
-                    color: AppColors.orange,
-                  ),
-                ),
 
-                /// Cart
-                SalomonBottomBarItem(
-                  icon: SvgPicture.asset(
-                    "assets/images/svg/cart.svg",
-                    color: cubit.currentNavIndex == 1
-                        ? AppColors.orange
-                        : const Color(0xffB2B2B2),
-                  ),
-                  title: Text(
-                    "cart".tr(context),
-                    style: TextStyle(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w400,
+                  /// Cart
+                  SalomonBottomBarItem(
+                    icon: SvgPicture.asset(
+                      "assets/images/svg/cart.svg",
+                      color: cubit.currentNavIndex == 1
+                          ? AppColors.orange
+                          : const Color(0xffB2B2B2),
+                    ),
+                    title: Text(
+                      "cart".tr(context),
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.orange,
+                      ),
+                    ),
+                    selectedColor: AppColors.orange,
+                    activeIcon: SvgPicture.asset(
+                      "assets/images/svg/cart.svg",
                       color: AppColors.orange,
                     ),
                   ),
-                  selectedColor: AppColors.orange,
-                  activeIcon: SvgPicture.asset(
-                    "assets/images/svg/cart.svg",
-                    color: AppColors.orange,
-                  ),
-                ),
 
-                /// Profile
-                SalomonBottomBarItem(
-                  icon: SvgPicture.asset(
-                    "assets/images/svg/wishlist.svg",
-                    color: cubit.currentNavIndex == 2
-                        ? AppColors.orange
-                        : const Color(0xffB2B2B2),
-                  ),
-                  title: Text(
-                    "favourite".tr(context),
-                    style: TextStyle(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w400,
+                  /// Profile
+                  SalomonBottomBarItem(
+                    icon: SvgPicture.asset(
+                      "assets/images/svg/wishlist.svg",
+                      color: cubit.currentNavIndex == 2
+                          ? AppColors.orange
+                          : const Color(0xffB2B2B2),
+                    ),
+                    title: Text(
+                      "favourite".tr(context),
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.orange,
+                      ),
+                    ),
+                    selectedColor: AppColors.orange,
+                    activeIcon: SvgPicture.asset(
+                      "assets/images/svg/wishlist.svg",
                       color: AppColors.orange,
                     ),
                   ),
-                  selectedColor: AppColors.orange,
-                  activeIcon: SvgPicture.asset(
-                    "assets/images/svg/wishlist.svg",
-                    color: AppColors.orange,
-                  ),
-                ),
 
-                /// Settings
-                SalomonBottomBarItem(
-                  icon: SvgPicture.asset(
-                    "assets/images/svg/profile.svg",
-                    color: cubit.currentNavIndex == 3
-                        ? AppColors.orange
-                        : const Color(0xffB2B2B2),
-                  ),
-                  title: Text(
-                    "profile".tr(context),
-                    style: TextStyle(
-                      fontSize: 14.sp,
-                      fontWeight: FontWeight.w400,
+                  /// Settings
+                  SalomonBottomBarItem(
+                    icon: SvgPicture.asset(
+                      "assets/images/svg/profile.svg",
+                      color: cubit.currentNavIndex == 3
+                          ? AppColors.orange
+                          : const Color(0xffB2B2B2),
+                    ),
+                    title: Text(
+                      "profile".tr(context),
+                      style: TextStyle(
+                        fontSize: 14.sp,
+                        fontWeight: FontWeight.w400,
+                        color: AppColors.orange,
+                      ),
+                    ),
+                    selectedColor: AppColors.orange,
+                    activeIcon: SvgPicture.asset(
+                      "assets/images/svg/profile.svg",
                       color: AppColors.orange,
                     ),
                   ),
-                  selectedColor: AppColors.orange,
-                  activeIcon: SvgPicture.asset(
-                    "assets/images/svg/profile.svg",
-                    color: AppColors.orange,
-                  ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class AppTextField extends StatefulWidget {
   final TextEditingController controller;
@@ -135,12 +136,12 @@ class _AppTextFieldState extends State<AppTextField> {
         prefixIcon: widget.prefixIcon,
         suffixIcon: widget.obscureText
             ? IconButton(
-                icon: Icon(
-                  _obscureText ? Icons.visibility_off : Icons.visibility,
-                  color: _hasFocus
-                      ? Colors.transparent
-                      : const Color(0xff515151).withOpacity(0.7),
-                  size: 20.sp,
+                icon: SvgPicture.asset(
+                  _obscureText
+                      ? "assets/images/svg/stash_lock-closed.svg"
+                      : "assets/images/svg/stash-lock-opened.svg",
+                  color: _hasFocus ? Color(0xffB2B2B2) : Color(0xffB2B2B2),
+                  width: 24.sp,
                 ),
                 onPressed: () {
                   setState(() {

@@ -37,7 +37,7 @@ class OrderDetailsScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Order Status Progress
+                    //! Order Status Progress
                     orderDetail.status != OrderDetailStatus.cancelled
                         ? OrderProgress(cubit: cubit)
                         : SizedBox.shrink(),

@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lasco/core/constants/navigation.dart';
 import 'package:lasco/core/cubit/global_cubit.dart';
 import 'package:lasco/core/locale/app_loacl.dart';
+import 'package:lasco/features/auth/view/sign_up_screen.dart';
 import 'package:lasco/features/profile/views/cubit/profile_cubit.dart';
 import 'package:lasco/features/profile/views/edit_profile_screen.dart';
 import 'package:lasco/features/profile/views/my_orders_screen.dart';
@@ -92,7 +93,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             onPressed: () {
               Navigator.pop(context);
-              Navigator.pop(context);
+              navigateAndFinish(context, SignUpScreen());
             },
           ),
           DialogButton(

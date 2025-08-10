@@ -43,10 +43,11 @@ class _PasswordFieldWithToggleState extends State<PasswordFieldWithToggle> {
       children: [
         AppTextField(
           controller: widget.controller,
+          radius: BorderRadiusDirectional.circular(12.r),
           labelText: widget.labelText.tr(context),
           hintText: widget.hintText.tr(context),
-          prefixIcon: Icon(Icons.lock_outline,
-              color: AppColors.textGrey.withOpacity(0.7)),
+          // prefixIcon: Icon(Icons.lock_outline,
+          //     color: AppColors.textGrey.withOpacity(0.7)),
           obscureText: widget.isPasswordObscure,
           suffixIcon: IconButton(
             icon: Icon(

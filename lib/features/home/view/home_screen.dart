@@ -140,7 +140,7 @@ class HomeScreen extends StatelessWidget {
                       ProductGrid(
                         title: "big_deals".tr(context),
                         products: _getBigDealsProducts(),
-                        childAspectRatio: 0.60,
+                        // childAspectRatio: 0.62,
                       ),
                       SizedBox(height: 20.h),
                       SpecialOffersGrid(
