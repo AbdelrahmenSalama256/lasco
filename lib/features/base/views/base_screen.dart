@@ -50,7 +50,7 @@ class BaseScreen extends StatelessWidget {
                   offset: Offset(0, 0),
                   blurRadius: 15,
                   spreadRadius: 0,
-                  color: AppColors.black.withOpacity(0.2),
+                  color: const Color.fromARGB(190, 10, 9, 11).withOpacity(0.1),
                 )
               ]),
               child: SalomonBottomBar(

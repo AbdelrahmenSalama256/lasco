@@ -202,7 +202,7 @@ class LoginScreen extends StatelessWidget {
                               SizedBox(height: 25.h),
                               InkWell(
                                 onTap: () {
-                                  // navigateAndFinish(context, BaseScreen());
+                                  navigateAndFinish(context, BaseScreen());
                                 },
                                 child: Text(
                                   "login_as_guest".tr(context),
