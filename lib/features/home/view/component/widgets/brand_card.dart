@@ -17,26 +17,29 @@ class BrandCard extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: 72.w,
-        height: 72.h,
+        height: 72.w,
         alignment: Alignment.center,
+        padding: EdgeInsets.symmetric(horizontal: 8.w, vertical: 8.h),
         clipBehavior: Clip.hardEdge,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(16.r),
           color: Colors.white,
           boxShadow: [
             BoxShadow(
-              color: Colors.black.withOpacity(0.1),
+              color: const Color.fromARGB(179, 0, 0, 0).withOpacity(0.1),
               blurRadius: 7.r,
               offset: Offset(0, 0.h),
             ),
           ],
         ),
-        child: Image.asset(
-          imageUrl,
-          fit: BoxFit.cover,
-          errorBuilder: (context, error, stackTrace) {
-            return _buildPlaceholderImage();
-          },
+        child: Center(
+          child: Image.asset(
+            imageUrl,
+            fit: BoxFit.cover,
+            errorBuilder: (context, error, stackTrace) {
+              return _buildPlaceholderImage();
+            },
+          ),
         ),
       ),
     );

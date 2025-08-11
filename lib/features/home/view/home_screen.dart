@@ -95,15 +95,15 @@ class HomeScreen extends StatelessWidget {
   List<BrandModel> _getBrands() {
     return [
       BrandModel(
-        imageUrl: 'assets/images/png/test-product.png',
+        imageUrl: 'assets/images/png/test-product2.png',
         name: 'Nivea',
       ),
       BrandModel(
-        imageUrl: 'assets/images/png/test-product.png',
+        imageUrl: 'assets/images/png/test-product2.png',
         name: 'JBL',
       ),
       BrandModel(
-        imageUrl: 'assets/images/png/test-product.png',
+        imageUrl: 'assets/images/png/test-product2.png',
         name: 'Sony',
       ),
       BrandModel(
@@ -194,8 +194,8 @@ class HomeScreen extends StatelessWidget {
             clipBehavior: Clip.none,
             children: [
               Container(
-                width: 44.w,
-                height: 44.h,
+                width: 50.w,
+                height: 50.h,
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: const Color(0xFFF7F7F7),

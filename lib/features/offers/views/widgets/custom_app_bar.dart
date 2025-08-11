@@ -7,10 +7,18 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String? title;
   final bool? isCenter;
   final VoidCallback? onTap;
+  // bg is changable
+  final Color? bgColor;
+
   final List<Widget>? action;
 
   const CustomAppBar(
-      {super.key, this.onTap, this.title, this.isCenter, this.action});
+      {super.key,
+      this.bgColor,
+      this.onTap,
+      this.title,
+      this.isCenter,
+      this.action});
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +54,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               )),
         ),
         actions: action,
-        backgroundColor: Colors.transparent,
+        backgroundColor: bgColor ?? Colors.transparent,
         elevation: 0,
         forceMaterialTransparency: true,
       ),

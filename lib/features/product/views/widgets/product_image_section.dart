@@ -10,10 +10,11 @@ class ProductImageSection extends StatelessWidget {
       height: 302.h,
       width: 100.w,
       margin: EdgeInsets.symmetric(horizontal: 10.w),
+      padding: EdgeInsets.symmetric(horizontal: 10.w),
       child: Image.asset(
         width: double.infinity,
         height: double.infinity,
-        "assets/images/png/test-product.png",
+        "assets/images/png/test-product2.png",
         fit: BoxFit.cover,
         errorBuilder: (context, error, stackTrace) {
           return Container(

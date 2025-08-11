@@ -32,7 +32,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      appBar: CustomAppBar(title: "profile".tr(context)),
+      appBar: CustomAppBar(
+        title: "profile".tr(context),
+        onTap: () {
+          context.read<GlobalCubit>().changeBottomNavIndex(0);
+        },
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [

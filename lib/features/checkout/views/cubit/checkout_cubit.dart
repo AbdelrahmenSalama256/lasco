@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../profile/views/order_details_screen.dart';
+import '../../../profile/data/models/order_details_model.dart';
 import '../order_comfrimation_screen.dart';
 import '../widgets/address_bottom_sheet.dart';
 import 'checkout_state.dart';
@@ -17,6 +17,22 @@ class CheckoutCubit extends Cubit<CheckoutState> {
   AddressModel? currentAddress;
   String phoneNumber = "+201111111111";
   List<Map<String, dynamic>> orderItems = [
+    {
+      'name': 'Bubblzz Body Lotion',
+      'category': 'Skin Care',
+      'price': 500.0,
+      'quantity': 2,
+      'deliveryDate': 'Deliver between 10 Aug, 12 Aug',
+      'imageUrl': 'assets/images/png/test-product.png',
+    },
+    {
+      'name': 'Bubblzz Body Lotion',
+      'category': 'Skin Care',
+      'price': 500.0,
+      'quantity': 2,
+      'deliveryDate': 'Deliver between 10 Aug, 12 Aug',
+      'imageUrl': 'assets/images/png/test-product.png',
+    },
     {
       'name': 'Bubblzz Body Lotion',
       'category': 'Skin Care',

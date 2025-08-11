@@ -5,6 +5,7 @@ import 'package:lasco/core/locale/app_loacl.dart';
 
 import '../../../../../core/constants/app_colors.dart';
 import '../../../../brand/views/brand_details.dart';
+import '../../../../brand/views/brands_screen.dart';
 import 'brand_card.dart';
 
 class BrandList extends StatelessWidget {
@@ -29,13 +30,33 @@ class BrandList extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          "brands".tr(context),
-          style: TextStyle(
-            fontSize: 18.sp,
-            fontWeight: FontWeight.w400,
-            color: AppColors.black,
-          ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              "brands".tr(context),
+              style: TextStyle(
+                fontSize: 18.sp,
+                fontWeight: FontWeight.w400,
+                color: AppColors.black,
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                navigateTo(context, BrandsScreen());
+              },
+              child: Text(
+                'view_all'.tr(context),
+                style: TextStyle(
+                  fontSize: 12.sp,
+                  fontWeight: FontWeight.w400,
+                  color: AppColors.secoundry,
+                  decoration: TextDecoration.underline,
+                  decorationColor: AppColors.secoundry,
+                ),
+              ),
+            ),
+          ],
         ),
         SizedBox(height: 12.h),
         SizedBox(

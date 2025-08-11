@@ -75,7 +75,7 @@ class BaseScreen extends StatelessWidget {
                     ),
                     selectedColor: AppColors.orange,
                     activeIcon: SvgPicture.asset(
-                      "assets/images/svg/home.svg",
+                      "assets/images/svg/home_fill.svg",
                       color: AppColors.orange,
                     ),
                   ),
@@ -83,7 +83,7 @@ class BaseScreen extends StatelessWidget {
                   /// Cart
                   SalomonBottomBarItem(
                     icon: SvgPicture.asset(
-                      "assets/images/svg/cart.svg",
+                      "assets/images/svg/shopping-bag_outline.svg",
                       color: cubit.currentNavIndex == 1
                           ? AppColors.orange
                           : const Color(0xffB2B2B2),
@@ -121,7 +121,7 @@ class BaseScreen extends StatelessWidget {
                     ),
                     selectedColor: AppColors.orange,
                     activeIcon: SvgPicture.asset(
-                      "assets/images/svg/wishlist.svg",
+                      "assets/images/svg/fav-fill.svg",
                       color: AppColors.orange,
                     ),
                   ),
@@ -144,7 +144,7 @@ class BaseScreen extends StatelessWidget {
                     ),
                     selectedColor: AppColors.orange,
                     activeIcon: SvgPicture.asset(
-                      "assets/images/svg/profile.svg",
+                      "assets/images/svg/profile-fill.svg",
                       color: AppColors.orange,
                     ),
                   ),

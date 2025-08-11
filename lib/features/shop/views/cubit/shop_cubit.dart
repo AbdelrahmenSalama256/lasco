@@ -10,13 +10,9 @@ class ShopCubit extends Cubit<ShopState> {
   List<String> selectedBrandIds = [];
 
   final List<String> categories = [
-    "All Categories",
     "Skin Care",
     "Hair Care",
     "Face Care",
-    "Body Care",
-    "Makeup",
-    "Perfumes",
   ];
 
   List<BrandFilterModel> getBrands() {
@@ -105,4 +101,3 @@ class BrandFilterModel {
     required this.imageUrl,
   });
 }
-

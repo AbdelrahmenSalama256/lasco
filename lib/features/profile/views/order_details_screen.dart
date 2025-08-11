@@ -12,6 +12,7 @@ import '../../checkout/views/widgets/order_details_section.dart';
 import '../../checkout/views/widgets/order_info.dart';
 import '../../checkout/views/widgets/order_items.dart';
 import '../../checkout/views/widgets/order_progress.dart';
+import '../data/models/order_details_model.dart';
 
 class OrderDetailsScreen extends StatelessWidget {
   final OrderDetailModel orderDetail;
@@ -359,47 +360,5 @@ class PaymentMethodModel {
   PaymentMethodModel({
     required this.title,
     required this.isCompleted,
-  });
-}
-
-class OrderItemModel {
-  final String category;
-  final String productName;
-  final String productImage;
-  final String price;
-  final int quantity;
-
-  OrderItemModel({
-    required this.category,
-    required this.productName,
-    required this.productImage,
-    required this.price,
-    required this.quantity,
-  });
-}
-
-class OrderDetailModel {
-  final String orderId;
-  final String orderDate;
-  final String deliveryAddress;
-  final String mobileNumber;
-  final List<PaymentMethodModel> paymentMethods;
-  final List<OrderItemModel> orderItems;
-  final String subtotal;
-  final String shipping;
-  final String total;
-  final OrderDetailStatus status;
-
-  OrderDetailModel({
-    required this.orderId,
-    required this.orderDate,
-    required this.deliveryAddress,
-    required this.mobileNumber,
-    required this.paymentMethods,
-    required this.orderItems,
-    required this.subtotal,
-    required this.shipping,
-    required this.total,
-    required this.status,
   });
 }

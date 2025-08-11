@@ -27,8 +27,13 @@ class ReviewsSection extends StatelessWidget {
             ),
           ),
           SizedBox(height: 10.h),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: 10.w),
+          Container(
+            height: 49.h,
+            decoration: BoxDecoration(
+              color: const Color(0xffF7F7F7),
+              borderRadius: BorderRadiusDirectional.circular(12.r),
+            ),
+            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 9.h),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lasco/core/constants/app_colors.dart';
 import 'package:lasco/core/locale/app_loacl.dart';
 
@@ -46,7 +47,7 @@ class PaymentMethodsSection extends StatelessWidget {
                           ? Icons.radio_button_checked
                           : Icons.radio_button_unchecked,
                       color: selectedPaymentMethod == 'full'
-                          ? AppColors.primary
+                          ? AppColors.secoundry
                           : const Color(0XFFB2B2B2),
                       size: 20.w,
                     ),
@@ -56,7 +57,7 @@ class PaymentMethodsSection extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w400,
-                        color: const Color(0XFF515151),
+                        color: AppColors.grey,
                       ),
                     ),
                   ],
@@ -72,7 +73,7 @@ class PaymentMethodsSection extends StatelessWidget {
                           ? Icons.radio_button_checked
                           : Icons.radio_button_unchecked,
                       color: selectedPaymentMethod == 'partial'
-                          ? AppColors.primary
+                          ? AppColors.secoundry
                           : const Color(0XFFB2B2B2),
                       size: 20.w,
                     ),
@@ -82,7 +83,7 @@ class PaymentMethodsSection extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 12.sp,
                         fontWeight: FontWeight.w400,
-                        color: const Color(0XFF515151),
+                        color: AppColors.grey,
                       ),
                     ),
                   ],
@@ -90,6 +91,30 @@ class PaymentMethodsSection extends StatelessWidget {
               ),
             ],
           ),
+          // Conditionally display partial payment message
+          if (selectedPaymentMethod == 'partial') ...[
+            SizedBox(height: 12.h),
+            Row(
+              children: [
+                SvgPicture.asset(
+                  "assets/images/svg/cash-on-delivery.svg",
+                  width: 20.w,
+                  height: 20.h,
+                ),
+                SizedBox(width: 8.w),
+                Expanded(
+                  child: Text(
+                    "remaining_balance_due_on_delivery".tr(context),
+                    style: TextStyle(
+                      fontSize: 12.sp,
+                      color: AppColors.red,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
         ],
       ),
     );

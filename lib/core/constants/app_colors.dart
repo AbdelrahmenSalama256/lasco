@@ -7,7 +7,8 @@ class AppColors {
   static const Color textColor = Color(0xFF000000);
   static const Color primaryLightColor = Color(0xFFF8D7E5); // Light pink
   static const Color primaryMediumColor = Color(0xFFE94A8E); // Medium pink
-  static const Color secoundry = Color(0xff737791);
+  static const Color secoundry = Color(0xffA55DC8);
+  // static const Color secoundry = Colors.purple;
   static const Color gradientOne = Color(0xffD7F0EF);
   static const Color gradientTwo = Color(0xffF2FAFA);
   static const Color gradientThree = Color(0xff029F9A);
@@ -18,7 +19,7 @@ class AppColors {
   static const Color darkOrange = Color(0xffE59400);
   static const Color white = Colors.white;
   static const Color black = Color(0xff0A090B);
-  static const Color grey = Color(0xff7C7C7C);
+  static const Color grey = Color(0xff515151);
   // Brand colors
   static const Color secondary = Color(0xFF00AEEF);
 

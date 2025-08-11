@@ -165,5 +165,11 @@
   "place_details": "تفاصيل المكان",
   "products": "المنتجات",
   "offers": "العروض",
-  "buy_2_get_1_free": "اشترِ 2 واحصل على الثالث مجانًا"
+  "buy_2_get_1_free": "اشترِ 2 واحصل على الثالث مجانًا",
+  "discover_amazing_brands": "اكتشف علامات تجارية رائعة",
+  "search_your_favorite_brands": "ابحث عن علاماتك التجارية المفضلة",
+  "brands_available": "علامة تجارية متاحة",
+  "no_brands_found": "لم يتم العثور على علامات تجارية",
+  "try_adjusting_your_search_or_filters": "حاول تعديل البحث أو الفلاتر",
+  "clear_filters": "مسح الفلاتر"
 }

@@ -4,6 +4,8 @@ import 'package:lasco/core/constants/app_colors.dart';
 import 'package:lasco/core/locale/app_loacl.dart';
 import 'package:lasco/features/offers/views/widgets/custom_app_bar.dart';
 
+import '../data/models/order_details_model.dart';
+import '../data/models/order_item_model.dart';
 import 'order_details_screen.dart';
 import 'widgets/my_orders_card.dart';
 

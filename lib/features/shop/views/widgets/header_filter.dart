@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lasco/core/constants/app_colors.dart';
 
 import '../cubit/shop_cubit.dart';
@@ -24,6 +25,13 @@ class CategoryFilterHeader extends StatefulWidget {
 }
 
 class _CategoryFilterHeaderState extends State<CategoryFilterHeader> {
+  // Map of category names to their corresponding SVG icons
+  final Map<String, String> categoryIcons = {
+    'Skin Care': 'assets/images/svg/cosmetics.svg',
+    'Hair Care': 'assets/images/svg/hair-care.svg',
+    'Face Care': 'assets/images/svg/lotion.svg',
+  };
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -91,7 +99,7 @@ class _CategoryFilterHeaderState extends State<CategoryFilterHeader> {
               widget.categories.map((String category) {
             return Container(
               alignment: Alignment.center,
-              margin: EdgeInsetsDirectional.only(end: 10.w),
+              margin: EdgeInsetsDirectional.only(end: 5.w),
               child: Text(
                 category,
                 style: TextStyle(
@@ -104,14 +112,28 @@ class _CategoryFilterHeaderState extends State<CategoryFilterHeader> {
           }).toList(),
           items: widget.categories.map((String category) {
             return DropdownMenuItem<String>(
+              alignment: Alignment.center,
               value: category,
-              child: Text(
-                category,
-                style: TextStyle(
-                  color: Colors.black87,
-                  fontSize: 14.sp,
-                  fontWeight: FontWeight.w400,
-                ),
+              child: Row(
+                children: [
+                  // SVG Icon
+                  SvgPicture.asset(
+                    categoryIcons[category] ?? 'assets/images/svg/bag.svg',
+                    width: 20.w,
+                    height: 20.h,
+                    // color: Colors.black87,
+                  ),
+                  SizedBox(width: 8.w),
+                  // Category Text
+                  Text(
+                    category,
+                    style: TextStyle(
+                      color: Colors.black87,
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w400,
+                    ),
+                  ),
+                ],
               ),
             );
           }).toList(),

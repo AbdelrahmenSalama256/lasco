@@ -43,7 +43,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             right: 0,
             child: Container(
               width: 375.w,
-              height: 362.h,
+              height: 310.h,
               decoration: BoxDecoration(
                 color: const Color(0xffF7F7F7),
                 borderRadius: BorderRadiusDirectional.only(
@@ -56,10 +56,11 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
           // Custom App Bar
           Positioned(
-            top: MediaQuery.of(context).padding.top - 35.h,
+            top: MediaQuery.of(context).padding.top - 40.h,
             left: 0,
             right: 0,
             child: CustomAppBar(
+              bgColor: Color(0xffF7F7F7),
               title: "product_details".tr(context),
               action: const [FavoriteButton()],
             ),
@@ -67,7 +68,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
 
           // Main Content
           Positioned(
-            top: MediaQuery.of(context).padding.top + 20.h,
+            top: MediaQuery.of(context).padding.top + 40.h,
             left: 0,
             right: 0,
             bottom: 0,

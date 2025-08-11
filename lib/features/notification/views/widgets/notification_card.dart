@@ -19,19 +19,19 @@ class NotificationCard extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 6.h),
+        // margin: EdgeInsets.symmetric(horizontal: 16.w, vertical: 6.h),
         padding: EdgeInsets.all(16.w),
         decoration: BoxDecoration(
-          color: notification.isRead ? Colors.white : Colors.blue[50],
+          color: Colors.white,
           borderRadius: BorderRadius.circular(12.r),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.1),
-              spreadRadius: 1,
-              blurRadius: 8,
-              offset: const Offset(0, 2),
-            ),
-          ],
+          // boxShadow: [
+          //   BoxShadow(
+          //     color: Colors.grey.withOpacity(0.1),
+          //     spreadRadius: 1,
+          //     blurRadius: 8,
+          //     offset: const Offset(0, 2),
+          //   ),
+          // ],
         ),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,

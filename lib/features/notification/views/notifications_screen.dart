@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lasco/core/constants/app_colors.dart';
 import 'package:lasco/core/locale/app_loacl.dart';
+import 'package:lasco/features/notification/views/widgets/notification_card.dart';
 import 'package:lasco/features/offers/views/widgets/custom_app_bar.dart';
 
 class NotificationScreen extends StatelessWidget {
@@ -10,11 +11,13 @@ class NotificationScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // backgroundColor: Colors.white,
+      // backgroundColor: Colors.w,
       appBar: CustomAppBar(
         title: "notification".tr(context),
+        bgColor: Colors.white,
       ),
       body: SingleChildScrollView(
+        padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 0.h),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -66,175 +69,28 @@ class NotificationScreen extends StatelessWidget {
 
         SizedBox(height: 12.h),
 
-        ...notifications.map((notification) => Container(
-            color: AppColors.white,
-            padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 10.h),
-            child: _buildNotificationCard(notification))),
+        Container(
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(12.r),
+          ),
+          child: ListView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: notifications.length,
+            itemBuilder: (context, index) {
+              final notification = notifications[index];
+              return NotificationCard(
+                notification: notification,
+                onTap: () {
+                  // Handle notification tap
+                },
+              );
+            },
+          ),
+        ),
       ],
     );
-  }
-
-  Widget _buildNotificationCard(NotificationModel notification) {
-    return Container(
-      padding: EdgeInsets.all(16.w),
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(0.r),
-        border: Border(
-          bottom: BorderSide(color: Color(0xffF7F7F7), width: 1.w),
-        ),
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Notification Icon/Logo
-          _buildNotificationIcon(notification),
-
-          SizedBox(width: 12.w),
-
-          // Notification Content
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                // Title
-                Text(
-                  notification.title,
-                  style: TextStyle(
-                    fontSize: 14.sp,
-                    fontWeight: FontWeight.w600,
-                    color: Colors.black87,
-                  ),
-                ),
-
-                SizedBox(height: 4.h),
-
-                // Description
-                RichText(
-                  text: TextSpan(
-                    style: TextStyle(
-                      fontSize: 12.sp,
-                      color: Colors.grey[600],
-                      height: 1.4,
-                    ),
-                    children: _buildDescriptionSpans(notification.description),
-                  ),
-                ),
-
-                SizedBox(height: 8.h),
-
-                // Timestamp
-                Text(
-                  notification.timestamp,
-                  style: TextStyle(
-                    fontSize: 11.sp,
-                    color: Colors.grey[400],
-                  ),
-                ),
-              ],
-            ),
-          ),
-
-          // Product Image (if available)
-          if (notification.productImageUrl != null)
-            Container(
-              width: 50.w,
-              height: 50.w,
-              margin: EdgeInsets.only(left: 8.w),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8.r),
-              ),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(8.r),
-                child: Image.network(
-                  notification.productImageUrl!,
-                  fit: BoxFit.cover,
-                  errorBuilder: (context, error, stackTrace) {
-                    return Container(
-                      decoration: BoxDecoration(
-                        color: Colors.pink[100],
-                        borderRadius: BorderRadius.circular(8.r),
-                      ),
-                      child: Icon(
-                        Icons.local_offer,
-                        color: Colors.pink[300],
-                        size: 24.w,
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ),
-        ],
-      ),
-    );
-  }
-
-  Widget _buildNotificationIcon(NotificationModel notification) {
-    if (notification.type == NotificationType.brand) {
-      // Brand Logo
-      return Container(
-        width: 40.w,
-        height: 40.w,
-        decoration: BoxDecoration(
-          color: notification.brandColor ?? Colors.black,
-          shape: BoxShape.circle,
-        ),
-        child: Center(
-          child: Text(
-            notification.brandLogoText ?? "M",
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 14.sp,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
-        ),
-      );
-    } else {
-      // Promotional Icon
-      return Container(
-        width: 40.w,
-        height: 40.w,
-        decoration: BoxDecoration(
-          color: AppColors.orange.withOpacity(0.2),
-          shape: BoxShape.circle,
-        ),
-        child: Icon(
-          Icons.local_offer_outlined,
-          color: AppColors.orange,
-          size: 20.w,
-        ),
-      );
-    }
-  }
-
-  List<TextSpan> _buildDescriptionSpans(String description) {
-    // Split text to highlight percentage
-    final regex = RegExp(r'(\d+%\s*off)');
-    final parts = description.split(regex);
-    final matches = regex.allMatches(description).toList();
-
-    List<TextSpan> spans = [];
-
-    for (int i = 0; i < parts.length; i++) {
-      if (parts[i].isNotEmpty) {
-        spans.add(TextSpan(text: parts[i]));
-      }
-
-      if (i < matches.length) {
-        spans.add(
-          TextSpan(
-            text: matches[i].group(0),
-            style: TextStyle(
-              color: AppColors.orange,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-        );
-      }
-    }
-
-    return spans;
   }
 
   List<NotificationModel> _getTodayNotifications(BuildContext context) {
