@@ -45,7 +45,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: MediaQuery.of(context).size.height * 0.7,
+      height: MediaQuery.of(context).size.height * 0.5,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadiusDirectional.only(
@@ -85,7 +85,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                   // Brands Section
                   _buildBrandsSection(widget.cubit, context),
 
-                  SizedBox(height: 40.h),
+                  SizedBox(height: 0.h),
                 ],
               ),
             ),
@@ -238,33 +238,17 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
 
         SizedBox(height: 16.h),
 
-        // Brands Grid
-        Wrap(
-          spacing: 16.w,
-          runSpacing: 16.h,
-          children: widget.brands.map((brand) {
-            bool isSelected = _selectedBrandIds.contains(brand.id);
+        // Brands List (Scrollable)
+        SingleChildScrollView(
+          scrollDirection: Axis.horizontal,
+          child: Row(
+            children: widget.brands.map((brand) {
+              bool isSelected = _selectedBrandIds.contains(brand.id);
 
-            return GestureDetector(
-              onTap: () {
-                setState(() {
-                  if (_selectedBrandIds.contains(brand.id)) {
-                    _selectedBrandIds.remove(brand.id);
-                  } else {
-                    _selectedBrandIds.add(brand.id);
-                  }
-                });
-                cubit.toggleBrandSelection(brand.id);
-              },
-              child: Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(16.r),
-                  border: isSelected
-                      ? Border.all(color: AppColors.orange, width: 2)
-                      : null,
-                ),
-                child: BrandCard(
-                  imageUrl: brand.imageUrl,
+              return Padding(
+                padding: EdgeInsetsDirectional.symmetric(
+                    horizontal: 10.w, vertical: 10.h),
+                child: GestureDetector(
                   onTap: () {
                     setState(() {
                       if (_selectedBrandIds.contains(brand.id)) {
@@ -275,10 +259,31 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                     });
                     cubit.toggleBrandSelection(brand.id);
                   },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16.r),
+                      border: isSelected
+                          ? Border.all(color: AppColors.orange, width: 2)
+                          : null,
+                    ),
+                    child: BrandCard(
+                      imageUrl: brand.imageUrl,
+                      onTap: () {
+                        setState(() {
+                          if (_selectedBrandIds.contains(brand.id)) {
+                            _selectedBrandIds.remove(brand.id);
+                          } else {
+                            _selectedBrandIds.add(brand.id);
+                          }
+                        });
+                        cubit.toggleBrandSelection(brand.id);
+                      },
+                    ),
+                  ),
                 ),
-              ),
-            );
-          }).toList(),
+              );
+            }).toList(),
+          ),
         ),
       ],
     );

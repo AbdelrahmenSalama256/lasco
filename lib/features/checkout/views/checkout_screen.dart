@@ -25,7 +25,7 @@ class CheckoutScreen extends StatelessWidget {
           BlocBuilder<CheckoutCubit, CheckoutState>(builder: (context, state) {
         final cubit = context.read<CheckoutCubit>();
         return Scaffold(
-          backgroundColor: Colors.grey[50],
+          backgroundColor: Colors.white,
           appBar: CustomAppBar(
             title: "checkout".tr(context),
           ),
@@ -40,7 +40,7 @@ class CheckoutScreen extends StatelessWidget {
                       constraints: BoxConstraints(
                         minHeight: MediaQuery.of(context).size.height -
                             kToolbarHeight - // AppBar height
-                            20.h - // Padding for button
+                            20.h -
                             20.h - // SizedBox height
                             10.h - // Vertical padding of AppButton
                             10.h, // Vertical padding of AppButton

@@ -60,18 +60,18 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             left: 0,
             right: 0,
             child: CustomAppBar(
-              bgColor: Color(0xffF7F7F7),
+              bgColor: const Color(0xffF7F7F7),
               title: "product_details".tr(context),
               action: const [FavoriteButton()],
             ),
           ),
 
-          // Main Content
+          // Main Content (Scrollable)
           Positioned(
             top: MediaQuery.of(context).padding.top + 40.h,
             left: 0,
             right: 0,
-            bottom: 0,
+            bottom: 80.h, // Space for the fixed BuyNowSection
             child: SingleChildScrollView(
               child: Column(
                 children: [
@@ -85,22 +85,23 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       ),
                     ],
                   ),
-                  SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        DescriptionSection(
-                          isExpanded: isDescriptionExpanded,
-                          onToggle: toggleDescription,
-                        ),
-                        const ReviewsSection(),
-                        BuyNowSection(quantity: quantity),
-                        SizedBox(height: 20.h),
-                      ],
-                    ),
+                  DescriptionSection(
+                    isExpanded: isDescriptionExpanded,
+                    onToggle: toggleDescription,
                   ),
+                  const ReviewsSection(),
+                  SizedBox(height: 80.h), // Spacer for the fixed BuyNowSection
                 ],
               ),
             ),
+          ),
+
+          // Fixed BuyNowSection at the bottom
+          Positioned(
+            left: 0,
+            right: 0,
+            bottom: 0,
+            child: BuyNowSection(quantity: quantity),
           ),
         ],
       ),

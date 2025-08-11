@@ -199,67 +199,81 @@ class _BrandsScreenState extends State<BrandsScreen>
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
+      appBar: // Header Section
+          CustomAppBar(title: "brands".tr(context)),
       body: SafeArea(
-        child: CustomScrollView(
-          slivers: [
-            SliverToBoxAdapter(
-                child: CustomAppBar(title: "brands".tr(context))),
-            SliverToBoxAdapter(
-              child: BrandSearchSection(
-                controller: _searchController,
-                focusNode: _searchFocusNode,
-                isSearchFocused: _isSearchFocused,
-                scaleAnimation: _searchScaleAnimation,
-                onClearSearch: () {
-                  _searchController.clear();
-                  _searchFocusNode.unfocus();
-                },
-              ),
+        child: Column(
+          children: [
+            // Search Section
+            BrandSearchSection(
+              controller: _searchController,
+              focusNode: _searchFocusNode,
+              isSearchFocused: _isSearchFocused,
+              scaleAnimation: _searchScaleAnimation,
+              onClearSearch: () {
+                _searchController.clear();
+                _searchFocusNode.unfocus();
+              },
             ),
-            SliverToBoxAdapter(
-              child: BrandCategoryFilter(
-                categories: _categories,
-                selectedCategory: _selectedCategory,
-                onCategorySelected: _selectCategory,
-              ),
+
+            // Category Filter
+            BrandCategoryFilter(
+              categories: _categories,
+              selectedCategory: _selectedCategory,
+              onCategorySelected: _selectCategory,
             ),
-            SliverToBoxAdapter(
+
+            // Main Content
+            Expanded(
               child: _filteredBrands.isEmpty
                   ? BrandEmptyState(onClearFilters: _clearFilters)
-                  : Container(
-                      padding: EdgeInsets.symmetric(horizontal: 20.w),
+                  : SingleChildScrollView(
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          BrandResultsHeader(
-                            resultsCount: _filteredBrands.length,
-                            selectedCategory: _selectedCategory,
+                          Container(
+                            padding: EdgeInsets.symmetric(horizontal: 20.w),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                BrandResultsHeader(
+                                  resultsCount: _filteredBrands.length,
+                                  selectedCategory: _selectedCategory,
+                                ),
+                                SizedBox(height: 15.h),
+                              ],
+                            ),
                           ),
-                          SizedBox(height: 15.h),
+
+                          // Replace the ListView.builder with this GridView.builder
+                          GridView.builder(
+                            physics: const NeverScrollableScrollPhysics(),
+                            shrinkWrap: true,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 15.w, vertical: 8.h),
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: 3, // Number of items per row
+                              crossAxisSpacing:
+                                  15.w, // Horizontal spacing between items
+                              mainAxisSpacing:
+                                  20.h, // Vertical spacing between items
+                              childAspectRatio:
+                                  0.65, // Width/height ratio of each item
+                            ),
+                            itemCount: _filteredBrands.length,
+                            itemBuilder: (context, index) {
+                              final brand = _filteredBrands[index];
+                              return BrandCard(
+                                brand: brand,
+                                index: index,
+                                onTap: () => _navigateToBrandDetails(brand),
+                              );
+                            },
+                          ),
                         ],
                       ),
                     ),
             ),
-            if (_filteredBrands.isNotEmpty)
-              SliverGrid(
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  crossAxisSpacing: 15.w,
-                  mainAxisSpacing: 20.h,
-                  childAspectRatio: 0.70,
-                ),
-                delegate: SliverChildBuilderDelegate(
-                  (context, index) {
-                    final brand = _filteredBrands[index];
-                    return BrandCard(
-                      brand: brand,
-                      index: index,
-                      onTap: () => _navigateToBrandDetails(brand),
-                    );
-                  },
-                  childCount: _filteredBrands.length,
-                ),
-              ),
           ],
         ),
       ),

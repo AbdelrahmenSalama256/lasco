@@ -27,19 +27,37 @@ class CategoryList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 90.h,
-      child: ListView.separated(
-        scrollDirection: Axis.horizontal,
-        itemCount: categories.length,
-        padding: EdgeInsets.symmetric(horizontal: 0.w),
-        separatorBuilder: (context, index) => SizedBox(
-          width: 10.w,
+    return Column(
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Text(
+              "categories".tr(context),
+              style: TextStyle(
+                fontSize: 18.sp,
+                fontWeight: FontWeight.w400,
+                color: AppColors.black,
+              ),
+            ),
+          ],
         ),
-        itemBuilder: (context, index) {
-          return _buildCategoryItem(context, categories[index]);
-        },
-      ),
+        SizedBox(height: 12.h),
+        SizedBox(
+          height: 90.h,
+          child: ListView.separated(
+            scrollDirection: Axis.horizontal,
+            itemCount: categories.length,
+            padding: EdgeInsets.symmetric(horizontal: 0.w),
+            separatorBuilder: (context, index) => SizedBox(
+              width: 10.w,
+            ),
+            itemBuilder: (context, index) {
+              return _buildCategoryItem(context, categories[index]);
+            },
+          ),
+        ),
+      ],
     );
   }
 

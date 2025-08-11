@@ -17,8 +17,9 @@ class BrandCategoryFilter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 40.h,
+      height: 60.h,
       margin: EdgeInsets.only(bottom: 8.h),
+      // padding: EdgeInsets.symmetric(horizontal: 0.w, vertical: 8.h),
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
         padding: EdgeInsets.symmetric(horizontal: 20.w),
@@ -30,7 +31,9 @@ class BrandCategoryFilter extends StatelessWidget {
           return GestureDetector(
             onTap: () => onCategorySelected(category),
             child: AnimatedContainer(
+              height: 40.h,
               duration: const Duration(milliseconds: 200),
+              margin: EdgeInsetsDirectional.symmetric(vertical: 10.h),
               padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
               decoration: BoxDecoration(
                 color: isSelected ? AppColors.orange : Colors.white,

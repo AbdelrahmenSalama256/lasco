@@ -9,7 +9,7 @@ class CartItemsSection extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.white,
-      padding: EdgeInsets.symmetric(vertical: 16.h),
+      padding: EdgeInsets.symmetric(vertical: 16.h, horizontal: 16.w),
       child: Column(
         children: [
           ProductCartCard(
